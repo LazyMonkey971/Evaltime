@@ -3,5 +3,5 @@ test 2
 
 
 
-libidoptères <- 9 + 10
+libidoptère <- 9 + 10
 
