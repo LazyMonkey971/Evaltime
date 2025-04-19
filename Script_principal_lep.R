@@ -5,7 +5,7 @@
 #Script principal - Appel des fonctions
 
 # Après avoir définir le dossier contenant les scripts, les fonctions peuvent être chargées:
-data <- list.files(pattern = "*.csv")
+data <- list.files(path = "Libidoptères",pattern = "*.csv", full.names = TRUE, include.dirs = TRUE)
 
 # 1. Fusionner tous les fichiers CSV de lépidoptères en un gros data frame (lep)
 source("fct_fusion_csv_lep.R")
