@@ -36,8 +36,8 @@ unique_values <- unique(lep$obs_variable)
 
 
 # 6. Renommer le nom de la colonne day_obs pour qu'elle s'appelle month_obs 
-source("fct_renommer_col_obs_day-month.R")
-lep <- renommer_col_obs_day_en_month(fleur=lep)
+source("fct_renommer_col_day_obs-month.R")
+lep <- renommer_col_day_obs_en_month(fleur=lep)
 
 #7. Pour la colonne "obs_unit", la supprimer (car ce ne sont que des NA)
 source("fct_retire_colonne_na.R")
