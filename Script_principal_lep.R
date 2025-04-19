@@ -1,5 +1,3 @@
-#Test 2
-
 #Projet BIO500
 #Jeu de données: lépidoptères
 #Question de recherche: comment les variations spatiales et temporelles influent-elles sur la structure des communautés? 
@@ -37,9 +35,9 @@ lep <- uniformiser_obs_variable(lep)
 unique_values <- unique(lep$obs_variable)
 
 
-# 6. Pour la colonne "obs_value", enlever les valeurs trop abberrantes (dépassant 500)
-source("fct_nettoyer_obs_value.R")
-lep <- nettoyer_obs_value(lep, "obs_value", seuil = 500)
+# 6. Renommer le nom de la colonne day_obs pour qu'elle s'appelle month_obs 
+source("fct_renommer_col_obs_day->month")
+lep <- renommer_col_obs_day_en_month(fleur=lep)
 
 #7. Pour la colonne "obs_unit", la supprimer (car ce ne sont que des NA)
 source("fct_retire_colonne_na.R")
@@ -78,6 +76,10 @@ print(lignes_par_an)
 # Requête: afficher le nb d'individus par an
 # Requête: afficher le nb de creator par an
 # Requête : afficher le nb d'sp pour les latitudes élevées et faibles 
+# Requête : est ce qu'il y a des espèces qui se sont éteinte?
+# Requête : est ce qu'il y a de nouvelles espèces
+# Requête : prendre une espèce à la fois et regarder comment elle varie 
+# et après comparer toutes les obsservations entres elles
 
 #Se déconnecter de la base de données
 dbDisconnect(connect)
