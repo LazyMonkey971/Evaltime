@@ -20,11 +20,11 @@ creer_date <-"
   CREATE TABLE dates (
   id_obs          INTEGER, 
   year_obs        INTEGER,
-  day_obs         INTEGER,
+  month_obs         INTEGER,
   time_obs        TIME,
   dwc_event_date  DATE,
   PRIMARY KEY     (id_obs)
-  FOREIGN KEY     (dwc_event_date) REFERENCES observations(dwc_event_date)
+  FOREIGN KEY     (id_obs) REFERENCES observations(id_obs)
 );"
 
 dbSendQuery(connect,creer_date)
@@ -40,13 +40,13 @@ creer_sources <- "
   license               VARCHAR(20),
   owner                 VARCHAR(100),
   PRIMARY KEY           (id_obs)
-  FOREIGN KEY           (creator) REFERENCES observations(creator)
+  FOREIGN KEY           (id_obs) REFERENCES observations(id_obs)
   );"
 
 dbSendQuery(connect, creer_sources)
 
 df_observations <- lep[, c("observed_scientific_name","dwc_event_date","obs_variable","creator","lat","lon")]
-df_dates <- lep[, c("year_obs","day_obs","time_obs","dwc_event_date")]
+df_dates <- lep[, c("year_obs","month_obs","time_obs","dwc_event_date")]
 df_sources <- lep[,c("original_source","creator","title","publisher","intellectual_rights","license","owner")]
 
 #Sauvegarder les données retournées par une requête
