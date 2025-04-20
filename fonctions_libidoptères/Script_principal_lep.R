@@ -2,53 +2,55 @@
 #Jeu de données: lépidoptères
 #Question de recherche: comment les variations spatiales et temporelles influent-elles sur la structure des communautés? 
 
+library(ggplot2)
+
 #Script principal - Appel des fonctions
 
 # Après avoir définir le dossier contenant les scripts, les fonctions peuvent être chargées:
 data <- list.files(path = "Libidoptères",pattern = "*.csv", full.names = TRUE, include.dirs = TRUE)
 
 # 1. Fusionner tous les fichiers CSV de lépidoptères en un gros data frame (lep)
-source("fct_fusion_csv_lep.R")
+source("fonctions_libidoptères/fct_fusion_csv_lep.R")
 lep <- fusion_csv_lep(data)
 
 
 # 2. Pour la colonne "observed_scientific_name", vérifier que les noms scientifiques sont correctement écrits et valides
-source("fct_verify_lep_names.R")
+source("fonctions_libidoptères/fct_verify_lep_names.R")
 taxonomie <- read.csv("taxonomie.csv")
 invalid_names <- verify_lep_names(lep, taxonomie)
 
 
 # 3. Pour la colonne "time_obs" et "license", uniformiser les valeurs (remplacer les valeurs vides ou inscrit 00:00:000 par NA)
-source("fct_uniformiser_val_nul.R")
+source("fonctions_libidoptères/fct_uniformiser_val_nul.R")
 lep <- uniformiser_val_nul(lep, "time_obs")
 lep <- uniformiser_val_nul(lep, "license")
 
 # 4. Pour la colonne "dwc_event_date", uniformiser les valeurs (retirer l'heure en supprimant ce qui suit le 'T')
-source("fct_retirer_heure_dwc_event_date.R")
+source("fonctions_libidoptères/fct_retirer_heure_dwc_event_date.R")
 lep <- retirer_heure_dwc_event_date(lep, "dwc_event_date")
 
 
 # 5. Pour la colonne "obs_variable", vérifier et uniformiser les noms (changer "ocurrence" par "presence", considérant que ces valeurs signifient la même chose, et en changeant "pr@#sence (écris ainsi en 2012) par "presence")
-source("fct_uniformiser_obs_variable.R")
+source("fonctions_libidoptères/fct_uniformiser_obs_variable.R")
 lep <- uniformiser_obs_variable(lep)
     # Vérification des valeurs uniques dans obs_variable
 unique_values <- unique(lep$obs_variable)
 
 
 # 6. Renommer le nom de la colonne day_obs pour qu'elle s'appelle month_obs 
-source("fct_renommer_col_day_obs-month.R")
+source("fonctions_libidoptères/fct_renommer_col_day_obs-month.R")
 lep <- renommer_col_day_obs_en_month(fleur=lep)
 
 #7. Pour la colonne "obs_unit", la supprimer (car ce ne sont que des NA)
-source("fct_retire_colonne_na.R")
+source("fonctions_libidoptères/fct_retire_colonne_na.R")
 lep <- retirer_colonne_na(lep, "obs_unit")
 
 # 8. Pour la colonne "year_obs", uniformiser les valeurs (retirer l'heure en supprimant ce qui suit le 'T' et convertir les valeurs YYYY-MM-DD en YYYY)
-source("fct_uniformiser_year_obs.R")
+source("fonctions_libidoptères/fct_uniformiser_year_obs.R")
 lep <- uniformiser_year_obs(lep, "year_obs")
 
 #9. (creation des tables sql (observations, dates et source)
-source("fct_table_sql.R")
+source("fonctions_libidoptères/fct_table_sql.R")
 
 View(lep)
 
@@ -95,8 +97,11 @@ ORDER BY dates.year_obs;"
 nb_sp_par_an <- dbGetQuery(connect, sql_requete_2)
 print(nb_sp_par_an)
 
+<<<<<<< HEAD
 # Graphique requete 2
 library(ggplot2)
+=======
+>>>>>>> 34f2e7e1a2dcec6856a556c1f86329fcd5939306
 
 ggplot(nb_sp_par_an, aes(x = year_obs, y = nb_especes)) +
   geom_line(color = "darkblue", size = 1.2) +
