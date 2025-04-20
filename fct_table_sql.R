@@ -45,19 +45,11 @@ creer_sources <- "
 
 dbSendQuery(connect, creer_sources)
 
-df_observations <- lep[, c("observed_scientific_name","dwc_event_date","obs_variable","creator","lat","lon")]
-df_dates <- lep[, c("year_obs","month_obs","time_obs","dwc_event_date")]
-df_sources <- lep[,c("original_source","creator","title","publisher","intellectual_rights","license","owner")]
 
-#Sauvegarder les données retournées par une requête
-write.csv(df_observations, file = "df_observations.csv", row.names = FALSE)
-write.csv(df_dates, file = "df_dates.csv", row.names = FALSE)
-write.csv(df_sources, file = "df_sources.csv", row.names = FALSE)
-
-#Lecture des fichiers CSV
-bd_observations <- read.csv(file = "df_observations.csv")
-bd_dates <- read.csv(file = "df_dates.csv")
-bd_sources <-read.csv(file = "df_sources.csv")
+#Créer les bases de données à injecter
+bd_observations <- as.data.frame(lep[, c("observed_scientific_name","dwc_event_date","obs_variable","creator","lat","lon")])
+bd_dates <- as.data.frame(lep[, c("year_obs","month_obs","time_obs","dwc_event_date")])
+bd_sources <- as.data.frame(lep[,c("original_source","creator","title","publisher","intellectual_rights","license","owner")])
 
 #Injection des données
 dbWriteTable(connect, append = TRUE, name = "observations", value = bd_observations, row.names = FALSE)
