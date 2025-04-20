@@ -1,10 +1,12 @@
-# Figure nb obs qbc par décennie
+# Fct figure nb obs qbc par décennie
 
-barplot(
-  nb_obs_par_decennie$nb_observations,
-  names.arg = nb_obs_par_decennie$decennie,
-  col = "lightblue",
-  main = "Nombre d'observations par décennie au Québec",
-  xlab = "Décennie",
-  ylab = "Nombre d'observations"
-)
+fct_nb_obs_qbc <- function(data) {
+  barplot(
+    height = data$nb_observations,
+    names.arg = data$decennie,
+    col = "lightblue",
+    main = "Nombre d'observations par décennie au Québec",
+    xlab = "Décennie",
+    ylab = "Nombre d'observations"
+  )
+}
