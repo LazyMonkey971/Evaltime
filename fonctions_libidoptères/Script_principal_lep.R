@@ -7,6 +7,7 @@
 #------------libraries à télécharger:----------------------------
 library(ggplot2)
 library(leaflet)
+library(dplyr )
 #------------Script principal - Appel des fonctions--------------
 
 # Après avoir définir le dossier contenant les scripts, les fonctions peuvent être chargées:
@@ -106,7 +107,7 @@ sql_obs_carte <-
 obs_geo<- dbGetQuery(connect, sql_obs_carte)
 print(obs_geo)
 
-source("fonctions_libidoptères/Figure_nb_obs_decennie.R")
+source("fonctions_libidoptères/Figure_obs_carte.R")
 fct_voir_obs_carte(obs_geo)
 
 # Requête 4 : nombre d'espèces selon différentes latitudes au Québec: 44 à 49.5, 49.5 à 55, 55 à 60.5, 60.5 à 66
@@ -145,9 +146,8 @@ babybel <- "SELECT
     observations o
   JOIN 
     dates d ON o.dwc_event_date = d.dwc_event_date
-  WHERE 
-    o.lat BETWEEN 44 AND 66 AND
-    o.lon BETWEEN -80 AND -57
+  WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
   GROUP BY 
     o.observed_scientific_name
   HAVING 
@@ -176,9 +176,8 @@ FROM (
     observations o
   JOIN 
     dates d ON o.dwc_event_date = d.dwc_event_date
-  WHERE 
-    o.lat BETWEEN 44 AND 66 AND
-    o.lon BETWEEN -80 AND -57
+  WHERE lat >= 44 AND lat <= 66
+    AND lon >= -80 AND lon <= -57
   GROUP BY 
     o.observed_scientific_name
 )

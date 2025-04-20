@@ -1,7 +1,5 @@
 #figure positionnant les obs
 
-library(leaflet)
-
 fct_voir_obs_carte <- function(data, lng_center = -70, lat_center = 54, zoom_level = 4) {
   leaflet(data) %>%
     addProviderTiles(providers$Esri.WorldTerrain) %>%

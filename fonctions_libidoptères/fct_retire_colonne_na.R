@@ -11,8 +11,7 @@ retirer_colonne_na <- function(dataframe, colonne) {
     # Vérifier si la colonne contient uniquement des NA
     if(all(is.na(dataframe[[colonne]]))) {
       # Retirer la colonne si elle contient uniquement des NA
-      dataframe <- dataframe %>%
-        select(-all_of(colonne))
+      dataframe[, (colonne) := NULL]  # Syntaxe data.table pour supprimer une colonne
       message(paste("La colonne", colonne, "a été retirée car elle contenait uniquement des NA."))
     } else {
       message(paste("La colonne", colonne, "ne contient pas uniquement des NA, elle n'a pas été retirée."))
