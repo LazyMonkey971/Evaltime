@@ -49,8 +49,10 @@ lep <- retirer_colonne_na(lep, "obs_unit")
 source("fonctions_libidoptères/fct_uniformiser_year_obs.R")
 lep <- uniformiser_year_obs(lep, "year_obs")
 
-#9. (creation des tables sql (observations, dates et source)
-source("fonctions_libidoptères/fct_table_sql.R")
+#9. Ouvrir la connexion (creation des tables sql (observations, dates et source)
+#source("fonctions_libidoptères/fct_table_sql.R")
+connect <- dbConnect(SQLite(),dbname = "lepidopteres.db")
+
 
 View(lep)
 
