@@ -60,15 +60,77 @@ View(lep)
 #Exemples de requêtes:
 
 # Requête : afficher le nb de lignes par an 
-sql_requete <- "
+
+sql_requete_1 <- "
 SELECT dates.year_obs, COUNT(observations.id_obs) AS nb_obs
 FROM observations, dates
 WHERE observations.id_obs = dates.id_obs
 GROUP BY dates.year_obs
 ORDER BY year_obs"
 
-lignes_par_an <- dbGetQuery(connect, sql_requete)
+lignes_par_an <- dbGetQuery(connect, sql_requete_1)
 print(lignes_par_an)
+
+ggplot(lignes_par_an, aes(x = year_obs, y = nb_obs)) +
+  geom_line(color = "darkblue", size = 1.2) +
+  geom_point(color = "steelblue", size = 3) +
+  labs(
+    title = "Nombre d'observations par année",
+    x = "Année",
+    y = "Nombre d'observations"
+  ) +
+  theme_minimal()
+
+# Requête : afficher le nb d'sp par an (where veut dire:on garde les noms scientifiques qui contiennent un espace, car certaines obs ont juste le genre)
+# Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce, on met  LIKE '% %' 
+sql_requete_2 <- 
+  "SELECT dates.year_obs, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
+FROM observations
+JOIN dates ON observations.id_obs = dates.id_obs
+WHERE observations.observed_scientific_name LIKE '% %'
+GROUP BY dates.year_obs
+ORDER BY dates.year_obs;"
+
+nb_sp_par_an <- dbGetQuery(connect, sql_requete_2)
+print(nb_sp_par_an)
+
+library(ggplot2)
+
+ggplot(nb_sp_par_an, aes(x = year_obs, y = nb_especes)) +
+  geom_line(color = "darkblue", size = 1.2) +
+  geom_point(color = "steelblue", size = 3) +
+  labs(
+    title = "Nombre d'espèces observées par année",
+    x = "Année",
+    y = "Nombre d'espèces"
+  ) +
+  theme_minimal()
+
+# Requête : afficher le nb de genre par an 
+sql_requete_3 <- 
+  "SELECT 
+    dates.year_obs, 
+    COUNT(DISTINCT SUBSTR(observations.observed_scientific_name, 1, INSTR(observations.observed_scientific_name, ' ') - 1)) AS nb_genus
+FROM observations
+JOIN dates ON observations.id_obs = dates.id_obs
+WHERE INSTR(observations.observed_scientific_name, ' ') > 0
+GROUP BY dates.year_obs
+ORDER BY dates.year_obs;"
+
+nb_genre_par_an <- dbGetQuery(connect, sql_requete_3)
+print(nb_genre_par_an)
+
+ggplot(nb_genre_par_an, aes(x = year_obs, y = nb_genus)) +
+  geom_line(color = "steelblue", size = 1.2) +  # Ligne bleue claire
+  geom_point(color = "steelblue", size = 3) +   # Points bleus
+  labs(
+    title = "Nombre de Genres Observés Par Année",
+    x = "Année",
+    y = "Nombre de Genres"
+  ) +
+  theme_minimal()
+
+
 
 # Autres idées de requêtes à faire éventuellement 
 # Requête : afficher le nb d'sp par an
