@@ -116,6 +116,48 @@ GROUP BY lat, lon
 obs_geo<- dbGetQuery(connect, sql_requete_4)
 print(obs_geo)
 
+# Requête pour le nombre d'espèce éteinte/plus observés
+babybel <- 'SELECT 
+  (derniere_annee / 10) * 10 AS decennie,
+  COUNT(*) AS nb_extinctions
+FROM (
+  SELECT 
+    o.observed_scientific_name,
+    MAX(d.year_obs) AS derniere_annee
+  FROM 
+    observations o
+  JOIN 
+    dates d ON o.dwc_event_date = d.dwc_event_date
+  GROUP BY 
+    o.observed_scientific_name
+  HAVING 
+    derniere_annee < 2020
+)
+GROUP BY 
+  decennie
+ORDER BY 
+  decennie ASC;'
+extinction <- dbGetQuery(connect,babybel)
+
+# Mettre la figure dans une function 
+#Sourcer cette function içi
+
+# Requête pour voir les premières observations de chaque espèce
+cheddar <- "
+SELECT 
+  o.observed_scientific_name,
+  MIN(d.year_obs) AS premiere_annee_observee
+FROM 
+  observations o
+JOIN 
+  dates d ON o.dwc_event_date = d.dwc_event_date
+GROUP BY 
+  o.observed_scientific_name
+ORDER BY 
+  premiere_annee_observee ASC;"
+
+premiere_observation <- dbGetQuery(connect, cheddar)
+
 # Requête : afficher le nb d'sp sur une carte
 
 # Autres idées de requêtes à faire éventuellement 
