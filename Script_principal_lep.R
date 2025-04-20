@@ -61,8 +61,8 @@ View(lep)
 
 # Requête : afficher le nb de lignes par an 
 
-sql_requete_1 <- "
-SELECT dates.year_obs, COUNT(observations.id_obs) AS nb_obs
+sql_requete_1 <- 
+"SELECT dates.year_obs, COUNT(observations.id_obs) AS nb_obs
 FROM observations, dates
 WHERE observations.id_obs = dates.id_obs
 GROUP BY dates.year_obs
@@ -71,6 +71,7 @@ ORDER BY year_obs"
 lignes_par_an <- dbGetQuery(connect, sql_requete_1)
 print(lignes_par_an)
 
+# Graphique requete 1
 ggplot(lignes_par_an, aes(x = year_obs, y = nb_obs)) +
   geom_line(color = "darkblue", size = 1.2) +
   geom_point(color = "steelblue", size = 3) +
@@ -82,9 +83,9 @@ ggplot(lignes_par_an, aes(x = year_obs, y = nb_obs)) +
   theme_minimal()
 
 # Requête : afficher le nb d'sp par an (where veut dire:on garde les noms scientifiques qui contiennent un espace, car certaines obs ont juste le genre)
-# Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce, on met  LIKE '% %' 
+# Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce (et non les genres), on met  LIKE '% %' 
 sql_requete_2 <- 
-  "SELECT dates.year_obs, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
+"SELECT dates.year_obs, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
 FROM observations
 JOIN dates ON observations.id_obs = dates.id_obs
 WHERE observations.observed_scientific_name LIKE '% %'
@@ -94,6 +95,7 @@ ORDER BY dates.year_obs;"
 nb_sp_par_an <- dbGetQuery(connect, sql_requete_2)
 print(nb_sp_par_an)
 
+# Graphique requete 2
 library(ggplot2)
 
 ggplot(nb_sp_par_an, aes(x = year_obs, y = nb_especes)) +
@@ -108,9 +110,7 @@ ggplot(nb_sp_par_an, aes(x = year_obs, y = nb_especes)) +
 
 # Requête : afficher le nb de genre par an 
 sql_requete_3 <- 
-  "SELECT 
-    dates.year_obs, 
-    COUNT(DISTINCT SUBSTR(observations.observed_scientific_name, 1, INSTR(observations.observed_scientific_name, ' ') - 1)) AS nb_genus
+"SELECT dates.year_obs,COUNT(DISTINCT SUBSTR(observations.observed_scientific_name, 1, INSTR(observations.observed_scientific_name, ' ') - 1)) AS nb_genus
 FROM observations
 JOIN dates ON observations.id_obs = dates.id_obs
 WHERE INSTR(observations.observed_scientific_name, ' ') > 0
@@ -120,6 +120,7 @@ ORDER BY dates.year_obs;"
 nb_genre_par_an <- dbGetQuery(connect, sql_requete_3)
 print(nb_genre_par_an)
 
+# Graphique requete 3
 ggplot(nb_genre_par_an, aes(x = year_obs, y = nb_genus)) +
   geom_line(color = "steelblue", size = 1.2) +  # Ligne bleue claire
   geom_point(color = "steelblue", size = 3) +   # Points bleus
@@ -130,7 +131,14 @@ ggplot(nb_genre_par_an, aes(x = year_obs, y = nb_genus)) +
   ) +
   theme_minimal()
 
+# Requête : nb sp par latitude
+sql_requete_4 <- 
+"SELECT lat, COUNT(DISTINCT observed_scientific_name) AS nb_especes
+FROM lep
+GROUP BY lat
+ORDER BY lat;"
 
+# Requête : afficher le nb d'sp pour les latitudes élevées 
 
 # Autres idées de requêtes à faire éventuellement 
 # Requête : afficher le nb d'sp par an
@@ -145,4 +153,7 @@ ggplot(nb_genre_par_an, aes(x = year_obs, y = nb_genus)) +
 
 #Se déconnecter de la base de données
 dbDisconnect(connect)
+
+
+colnames(lep)
 
