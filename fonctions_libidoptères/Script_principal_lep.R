@@ -76,23 +76,7 @@ print(nb_obs_par_decennie)
 source("fonctions_libidoptères/Figure_nb_obs_decennie.R")
 fct_nb_obs_qbc(nb_obs_par_decennie)
 
-# Requête 2 : nombre d'espèces observée par année au Québec 
-## Afin de sélectionner seulement les obs dont l'identification va jusqu'a l'espèce (et non les genres), utiliser  LIKE '% %' (on garde les noms scientifiques qui contiennent un espace)  
-
-sql_nb_sp_par_an <- 
-  "SELECT dates.year_obs, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
-  FROM observations
-  JOIN dates ON observations.id_obs = dates.id_obs
-  WHERE observations.observed_scientific_name LIKE '% %' 
-    AND lat >= 44 AND lat <= 66
-    AND lon >= -80 AND lon <= -57
-  GROUP BY dates.year_obs
-  ORDER BY dates.year_obs;"
-
-nb_sp_par_an <- dbGetQuery(connect, sql_nb_sp_par_an)
-print(nb_sp_par_an)
-
-# Requête 2.0 : nombre d'espèces observée par décennie au Québec 
+# Requête 2 : nombre d'espèces observée par décennie au Québec 
 ## Afin de sélectionner seulement les obs dont l'identification va jusqu'a l'espèce (et non les genres), utiliser  LIKE '% %' (on garde les noms scientifiques qui contiennent un espace)  
 
 sql_nb_sp_par_decennie <- 
@@ -107,6 +91,9 @@ sql_nb_sp_par_decennie <-
 
 nb_sp_par_decennie <- dbGetQuery(connect, sql_nb_sp_par_decennie)
 print(nb_sp_par_decennie)
+
+source("fonctions_libidoptères/Figure_nb_sp_decennie.R")
+fct_voir_sp_par_decennie(nb_sp_par_decennie)
 
 # Requête 3 : carte visualisant les observations d'un point de vue géographique
 sql_obs_carte <- 
@@ -141,6 +128,10 @@ sql_nb_sp_lat <-
 
 nb_sp_lat <- dbGetQuery(connect, sql_nb_sp_lat)
 print(nb_sp_lat)
+
+source("fonctions_libidoptères/Figure_nb_sp_lat.R")
+fct_fig_nb_sp_lat(nb_sp_lat)
+
 
 # Requête 5: nombre d'espèce éteintes/qui ne sont plus observés
 babybel <- "SELECT 
