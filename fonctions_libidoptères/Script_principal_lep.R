@@ -61,24 +61,29 @@ View(lep)
 
 #Exemples de requêtes:
 
-# Requête : afficher le nb de lignes par an 
+# Requête : afficher le nb d'obs par an au quebec
 sql_requete_1 <- 
 "SELECT dates.year_obs, COUNT(observations.id_obs) AS nb_obs
 FROM observations, dates
 WHERE observations.id_obs = dates.id_obs
+AND lat >= 44 AND lat <= 66
+AND lon >= -80 AND lon <= -57
 GROUP BY dates.year_obs
 ORDER BY year_obs"
 
 lignes_par_an <- dbGetQuery(connect, sql_requete_1)
 print(lignes_par_an)
 
-# Requête : afficher le nb d'sp par an (where veut dire:on garde les noms scientifiques qui contiennent un espace, car certaines obs ont juste le genre)
-# Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce (et non les genres), on met  LIKE '% %' 
+# Requête : afficher le nb d'sp par an au quebec 
+# Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce (et non les genres), on met  LIKE '% %' (on garde les noms scientifiques qui contiennent un espace)  
+
 sql_requete_2 <- 
 "SELECT dates.year_obs, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
 FROM observations
 JOIN dates ON observations.id_obs = dates.id_obs
-WHERE observations.observed_scientific_name LIKE '% %'
+WHERE observations.observed_scientific_name LIKE '% %' 
+AND lat >= 44 AND lat <= 66
+AND lon >= -80 AND lon <= -57
 GROUP BY dates.year_obs
 ORDER BY dates.year_obs;"
 
@@ -88,10 +93,12 @@ print(nb_sp_par_an)
 
 # Requête : afficher le nb de genre par an 
 sql_requete_3 <- 
-"SELECT dates.year_obs,COUNT(DISTINCT SUBSTR(observations.observed_scientific_name, 1, INSTR(observations.observed_scientific_name, ' ') - 1)) AS nb_genus
+"SELECT dates.year_obs,COUNT(DISTINCT SUBSTR(observations.observed_scientific_name, 1, INSTR(observations.observed_scientific_name, ' ') - 1)) AS nb_genres
 FROM observations
 JOIN dates ON observations.id_obs = dates.id_obs
 WHERE INSTR(observations.observed_scientific_name, ' ') > 0
+AND lat >= 44 AND lat <= 66
+AND lon >= -80 AND lon <= -57
 GROUP BY dates.year_obs
 ORDER BY dates.year_obs;"
 
@@ -102,9 +109,14 @@ print(nb_genre_par_an)
 sql_requete_4 <- 
 "SELECT lat, lon, COUNT(DISTINCT observed_scientific_name) AS nb_especes
 FROM observations
+WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
 GROUP BY lat, lon
 "
-# Requête : afficher le nb d'sp pour les latitudes élevées 
+obs_geo<- dbGetQuery(connect, sql_requete_4)
+print(obs_geo)
+
+# Requête : afficher le nb d'sp sur une carte
 
 # Autres idées de requêtes à faire éventuellement 
 # Requête : afficher le nb d'sp par an

@@ -7,14 +7,13 @@ install.packages("leaflet")  # si ce n’est pas encore fait
 library(leaflet)
 
 leaflet(data = obs_geo) %>%
-  addTiles() %>%  # Fond de carte OpenStreetMap (pas besoin d'API)
+  addProviderTiles(providers$Esri.WorldTerrain) %>%  # Utilisation de la carte terrain
   addCircleMarkers(
     lng = ~lon,
     lat = ~lat,
-    radius = 3,
+    radius = 1,
     color = "red",
     stroke = FALSE,
     fillOpacity = 0.5
   ) %>%
-  setView(lng = -71, lat = 52, zoom = 5)  # Centré sur le Québec
-
+  setView(lng = -80, lat = 50, zoom = 4)  # Centré sur le Québec
