@@ -1,10 +1,13 @@
 #Projet BIO500
 #Jeu de données: lépidoptères
+#Par Maxence Comyn, Félix Laberge, Julianne Lemay-St-Laurent et Elsa Michel
+
 #Question de recherche: comment les variations spatiales et temporelles influent-elles sur la structure des communautés? 
 
+#------------library a télécharger:----------------------------
 library(ggplot2)
 
-#Script principal - Appel des fonctions
+#------------Script principal - Appel des fonctions--------------
 
 # Après avoir définir le dossier contenant les scripts, les fonctions peuvent être chargées:
 data <- list.files(path = "Libidoptères",pattern = "*.csv", full.names = TRUE, include.dirs = TRUE)
@@ -13,12 +16,10 @@ data <- list.files(path = "Libidoptères",pattern = "*.csv", full.names = TRUE, 
 source("fonctions_libidoptères/fct_fusion_csv_lep.R")
 lep <- fusion_csv_lep(data)
 
-
 # 2. Pour la colonne "observed_scientific_name", vérifier que les noms scientifiques sont correctement écrits et valides
 source("fonctions_libidoptères/fct_verify_lep_names.R")
 taxonomie <- read.csv("taxonomie.csv")
 invalid_names <- verify_lep_names(lep, taxonomie)
-
 
 # 3. Pour la colonne "time_obs" et "license", uniformiser les valeurs (remplacer les valeurs vides ou inscrit 00:00:000 par NA)
 source("fonctions_libidoptères/fct_uniformiser_val_nul.R")
@@ -29,13 +30,11 @@ lep <- uniformiser_val_nul(lep, "license")
 source("fonctions_libidoptères/fct_retirer_heure_dwc_event_date.R")
 lep <- retirer_heure_dwc_event_date(lep, "dwc_event_date")
 
-
 # 5. Pour la colonne "obs_variable", vérifier et uniformiser les noms (changer "ocurrence" par "presence", considérant que ces valeurs signifient la même chose, et en changeant "pr@#sence (écris ainsi en 2012) par "presence")
 source("fonctions_libidoptères/fct_uniformiser_obs_variable.R")
 lep <- uniformiser_obs_variable(lep)
     # Vérification des valeurs uniques dans obs_variable
 unique_values <- unique(lep$obs_variable)
-
 
 # 6. Renommer le nom de la colonne day_obs pour qu'elle s'appelle month_obs 
 source("fonctions_libidoptères/fct_renommer_col_day_obs-month.R")
@@ -58,26 +57,26 @@ View(lep)
 # Mettre working directory sur données nettoyées
 # Créer des tables et établir des relations (CREATE TABLE).
 
+#-------------------------- REQUÊTES--------------------------------
 
-#Exemples de requêtes:
+# Requête 1: nombre d'observations par decennie au Québec 
+sql_nb_obs_par_decennie <- "
+SELECT 
+  (dates.year_obs / 10) * 10 AS decennie, COUNT(observations.id_obs) AS nb_observations
+FROM observations
+JOIN dates ON observations.id_obs = dates.id_obs
+WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
+GROUP BY decennie
+ORDER BY decennie;
+"
+nb_obs_par_decennie <- dbGetQuery(connect, sql_nb_obs_par_decennie)
+print(nb_obs_par_decennie)
 
-# Requête : afficher le nb d'obs par an au quebec
-sql_requete_1 <- 
-"SELECT dates.year_obs, COUNT(observations.id_obs) AS nb_obs
-FROM observations, dates
-WHERE observations.id_obs = dates.id_obs
-AND lat >= 44 AND lat <= 66
-AND lon >= -80 AND lon <= -57
-GROUP BY dates.year_obs
-ORDER BY year_obs"
+# Requête 2 : nombre d'espèces observée par année au Québec 
+## Afin de sélectionner seulement les obs dont l'identification va jusqu'a l'espèce (et non les genres), utiliser  LIKE '% %' (on garde les noms scientifiques qui contiennent un espace)  
 
-lignes_par_an <- dbGetQuery(connect, sql_requete_1)
-print(lignes_par_an)
-
-# Requête : afficher le nb d'sp par an au quebec 
-# Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce (et non les genres), on met  LIKE '% %' (on garde les noms scientifiques qui contiennent un espace)  
-
-sql_requete_2 <- 
+sql_nb_sp_par_an <- 
 "SELECT dates.year_obs, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
 FROM observations
 JOIN dates ON observations.id_obs = dates.id_obs
@@ -87,43 +86,44 @@ AND lon >= -80 AND lon <= -57
 GROUP BY dates.year_obs
 ORDER BY dates.year_obs;"
 
-nb_sp_par_an <- dbGetQuery(connect, sql_requete_2)
+nb_sp_par_an <- dbGetQuery(connect, sql_nb_sp_par_an)
 print(nb_sp_par_an)
 
+# Requête 2.0 : nombre d'espèces observée par décennie au Québec 
+## Afin de sélectionner seulement les obs dont l'identification va jusqu'a l'espèce (et non les genres), utiliser  LIKE '% %' (on garde les noms scientifiques qui contiennent un espace)  
 
-# Requête : afficher le nb de genre par an 
-sql_requete_3 <- 
-"SELECT dates.year_obs,COUNT(DISTINCT SUBSTR(observations.observed_scientific_name, 1, INSTR(observations.observed_scientific_name, ' ') - 1)) AS nb_genres
+sql_nb_sp_par_decennie <- 
+"SELECT (dates.year_obs / 10) * 10 AS decennie, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
 FROM observations
 JOIN dates ON observations.id_obs = dates.id_obs
-WHERE INSTR(observations.observed_scientific_name, ' ') > 0
-AND lat >= 44 AND lat <= 66
-AND lon >= -80 AND lon <= -57
-GROUP BY dates.year_obs
-ORDER BY dates.year_obs;"
+WHERE observations.observed_scientific_name LIKE '% %'
+  AND lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
+GROUP BY decennie
+ORDER BY decennie;"
 
-nb_genre_par_an <- dbGetQuery(connect, sql_requete_3)
-print(nb_genre_par_an)
+nb_sp_par_decennie <- dbGetQuery(connect, sql_nb_sp_par_decennie)
+print(nb_sp_par_decennie)
 
-# Requête : nb obs sur une carte
-sql_requete_4 <- 
+# Requête 3 : carte visualisant les observations d'un point de vue géographique
+sql_obs_carte <- 
 "SELECT lat, lon, COUNT(DISTINCT observed_scientific_name) AS nb_especes
 FROM observations
 WHERE lat >= 44 AND lat <= 66
   AND lon >= -80 AND lon <= -57
-GROUP BY lat, lon
-"
-obs_geo<- dbGetQuery(connect, sql_requete_4)
+GROUP BY lat, lon"
+
+obs_geo<- dbGetQuery(connect, sql_obs_carte)
 print(obs_geo)
 
-# Requête : afficher le nb d'sp selon différentes latitudes au qbc: 44 à 49.5, 49.5 à 55, 55 à 60.5, 60.5 à 66
-sql_requete_5 <- "
-SELECT 
+# Requête 4 : nombre d'espèces selon différentes latitudes au Québec: 44 à 49.5, 49.5 à 55, 55 à 60.5, 60.5 à 66
+sql_nb_sp_lat <- 
+"SELECT 
   CASE 
     WHEN lat >= 44 AND lat < 49.5 THEN '[44, 49.5['
     WHEN lat >= 49.5 AND lat < 55 THEN '[49.5, 55['
     WHEN lat >= 55 AND lat < 60.5 THEN '[55, 60.5['
-    WHEN lat >= 60.5 AND lat < 66 THEN '[60.5, 66['
+    WHEN lat >= 60.5 AND lat <= 66 THEN '[60.5, 66]'
     ELSE 'hors_zone'
   END AS classe_latitude,
   COUNT(DISTINCT observed_scientific_name) AS nb_especes
@@ -133,31 +133,10 @@ WHERE lat >= 44 AND lat <= 66
 GROUP BY classe_latitude
 ORDER BY classe_latitude;
 "
-nb_especes_par_lat <- dbGetQuery(connect, sql_requete_5)
-print(nb_especes_par_lat)
+nb_sp_lat <- dbGetQuery(connect, sql_nb_sp_lat)
+print(nb_sp_lat)
 
-# Requête : afficher le nb d'sp selon différentes longitudes au qbc: -80 à -74.25, -74.25 à -68.5, -68.5 à -62.75, -62.75 à -57
-sql_requete_6 <- "
-SELECT 
-  CASE 
-    WHEN lon >= -80 AND lon < -74.25 THEN '[-80, -74.25['
-    WHEN lon >= -74.25 AND lon < -68.5 THEN '[-74.25, -68.5['
-    WHEN lon >= -68.5 AND lon < -62.75 THEN '[-68.5, -62.75['
-    WHEN lon >= -62.75 AND lon < -57 THEN '[-62.75, -57['
-    ELSE 'hors_zone'
-  END AS classe_longitude,
-  COUNT(DISTINCT observed_scientific_name) AS nb_especes
-FROM observations
-WHERE lat >= 44 AND lat <= 66
-  AND lon >= -80 AND lon <= -57
-GROUP BY classe_longitude
-ORDER BY classe_longitude;
-"
-
-nb_especes_par_lon <- dbGetQuery(connect, sql_requete_6)
-print(nb_especes_par_lon)
-
-# Requête pour le nombre d'espèce éteinte/plus observés
+# Requête 5: nombre d'espèce éteintes/qui ne sont plus observés
 babybel <- 'SELECT 
   (derniere_annee / 10) * 10 AS decennie,
   COUNT(*) AS nb_extinctions
@@ -199,22 +178,8 @@ ORDER BY
 
 premiere_observation <- dbGetQuery(connect, cheddar)
 
-# Requête : afficher le nb d'sp sur une carte
-
-# Autres idées de requêtes à faire éventuellement 
-# Requête : afficher le nb d'sp par an
-# Requête : afficher toutes les sp
-# Requête: afficher le nb d'individus par an
-# Requête: afficher le nb de creator par an
-# Requête : afficher le nb d'sp pour les latitudes élevées et faibles 
-# Requête : est ce qu'il y a des espèces qui se sont éteinte?
-# Requête : est ce qu'il y a de nouvelles espèces
-# Requête : prendre une espèce à la fois et regarder comment elle varie 
-# et après comparer toutes les obsservations entres elles
-
 #Se déconnecter de la base de données
 dbDisconnect(connect)
 
 
-colnames(lep)
 

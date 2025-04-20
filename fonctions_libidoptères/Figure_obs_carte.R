@@ -1,8 +1,5 @@
 #figure positionnant les obs
 
-obs_geo<- dbGetQuery(connect, sql_requete_4)
-print(obs_geo)
-
 install.packages("leaflet")  # si ce n’est pas encore fait
 library(leaflet)
 
@@ -16,4 +13,4 @@ leaflet(data = obs_geo) %>%
     stroke = FALSE,
     fillOpacity = 0.5
   ) %>%
-  setView(lng = -80, lat = 50, zoom = 4)  # Centré sur le Québec
+  setView(lng = -70, lat = 54, zoom = 4)  # Centré sur le Québec
