@@ -1,28 +1,7 @@
-babybel <- 'SELECT 
-  (derniere_annee / 10) * 10 AS decennie,
-  COUNT(*) AS nb_extinctions
-FROM (
-  SELECT 
-    o.observed_scientific_name,
-    MAX(d.year_obs) AS derniere_annee
-  FROM 
-    observations o
-  JOIN 
-    dates d ON o.dwc_event_date = d.dwc_event_date
-  GROUP BY 
-    o.observed_scientific_name
-  HAVING 
-    derniere_annee < 2020
-)
-GROUP BY 
-  decennie
-ORDER BY 
-  decennie ASC;'
-
 extinction <- dbGetQuery(connect,babybel)
 
-
-#library(ggplot2)
+install.packages("ggplot2")
+library(ggplot2)
 
 ggplot(extinction, aes(x = decennie, y = nb_extinctions)) +
   geom_col(fill = "#E4572E", width = 8) +  # couleur et largeur sympa
