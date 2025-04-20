@@ -62,7 +62,6 @@ View(lep)
 #Exemples de requêtes:
 
 # Requête : afficher le nb de lignes par an 
-
 sql_requete_1 <- 
 "SELECT dates.year_obs, COUNT(observations.id_obs) AS nb_obs
 FROM observations, dates
@@ -72,17 +71,6 @@ ORDER BY year_obs"
 
 lignes_par_an <- dbGetQuery(connect, sql_requete_1)
 print(lignes_par_an)
-
-# Graphique requete 1
-ggplot(lignes_par_an, aes(x = year_obs, y = nb_obs)) +
-  geom_line(color = "darkblue", size = 1.2) +
-  geom_point(color = "steelblue", size = 3) +
-  labs(
-    title = "Nombre d'observations par année",
-    x = "Année",
-    y = "Nombre d'observations"
-  ) +
-  theme_minimal()
 
 # Requête : afficher le nb d'sp par an (where veut dire:on garde les noms scientifiques qui contiennent un espace, car certaines obs ont juste le genre)
 # Afin de sélectionner seulement les obs dont l'identification va jusqua l'espèce (et non les genres), on met  LIKE '% %' 
@@ -97,21 +85,6 @@ ORDER BY dates.year_obs;"
 nb_sp_par_an <- dbGetQuery(connect, sql_requete_2)
 print(nb_sp_par_an)
 
-<<<<<<< HEAD
-# Graphique requete 2
-library(ggplot2)
-=======
->>>>>>> 34f2e7e1a2dcec6856a556c1f86329fcd5939306
-
-ggplot(nb_sp_par_an, aes(x = year_obs, y = nb_especes)) +
-  geom_line(color = "darkblue", size = 1.2) +
-  geom_point(color = "steelblue", size = 3) +
-  labs(
-    title = "Nombre d'espèces observées par année",
-    x = "Année",
-    y = "Nombre d'espèces"
-  ) +
-  theme_minimal()
 
 # Requête : afficher le nb de genre par an 
 sql_requete_3 <- 
@@ -125,24 +98,12 @@ ORDER BY dates.year_obs;"
 nb_genre_par_an <- dbGetQuery(connect, sql_requete_3)
 print(nb_genre_par_an)
 
-# Graphique requete 3
-ggplot(nb_genre_par_an, aes(x = year_obs, y = nb_genus)) +
-  geom_line(color = "steelblue", size = 1.2) +  # Ligne bleue claire
-  geom_point(color = "steelblue", size = 3) +   # Points bleus
-  labs(
-    title = "Nombre de Genres Observés Par Année",
-    x = "Année",
-    y = "Nombre de Genres"
-  ) +
-  theme_minimal()
-
-# Requête : nb sp par latitude
+# Requête : nb obs sur une carte
 sql_requete_4 <- 
-"SELECT lat, COUNT(DISTINCT observed_scientific_name) AS nb_especes
-FROM lep
-GROUP BY lat
-ORDER BY lat;"
-
+"SELECT lat, lon, COUNT(DISTINCT observed_scientific_name) AS nb_especes
+FROM observations
+GROUP BY lat, lon
+"
 # Requête : afficher le nb d'sp pour les latitudes élevées 
 
 # Autres idées de requêtes à faire éventuellement 
