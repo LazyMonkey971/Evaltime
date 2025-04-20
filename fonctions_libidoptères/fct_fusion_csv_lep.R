@@ -10,7 +10,7 @@ fusion_csv_lep <- function(data1) {
   }
   
   # Lire tous les fichiers CSV dans une liste de dataframes
-  named.list <- lapply(data1[1:154], read.csv)
+  named.list <- lapply(data1, read.csv)
   
   # Fusionner les dataframes en un seul grand tableau
   lep <- rbindlist(named.list, use.names = FALSE)
