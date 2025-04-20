@@ -117,7 +117,8 @@ obs_geo<- dbGetQuery(connect, sql_requete_4)
 print(obs_geo)
 
 # Requête pour le nombre d'espèce éteinte/plus observés
-babybel <- 'SELECT 
+babybel <- "
+SELECT 
   (derniere_annee / 10) * 10 AS decennie,
   COUNT(*) AS nb_extinctions
 FROM (
@@ -128,6 +129,9 @@ FROM (
     observations o
   JOIN 
     dates d ON o.dwc_event_date = d.dwc_event_date
+  WHERE 
+    o.lat BETWEEN 44 AND 66 AND
+    o.lon BETWEEN -80 AND -57
   GROUP BY 
     o.observed_scientific_name
   HAVING 
@@ -136,27 +140,45 @@ FROM (
 GROUP BY 
   decennie
 ORDER BY 
-  decennie ASC;'
+  decennie ASC;"
+
+
 extinction <- dbGetQuery(connect,babybel)
 
 # Mettre la figure dans une function 
 #Sourcer cette function içi
+source("fonctions_libidoptères/Figure_extinction.R")
+tracer_dernières_observations(extinction)
 
 # Requête pour voir les premières observations de chaque espèce
 cheddar <- "
 SELECT 
-  o.observed_scientific_name,
-  MIN(d.year_obs) AS premiere_annee_observee
-FROM 
-  observations o
-JOIN 
-  dates d ON o.dwc_event_date = d.dwc_event_date
+  (premiere_annee / 10) * 10 AS decennie,
+  COUNT(*) AS nb_premieres_observations
+FROM (
+  SELECT 
+    o.observed_scientific_name,
+    MIN(d.year_obs) AS premiere_annee
+  FROM 
+    observations o
+  JOIN 
+    dates d ON o.dwc_event_date = d.dwc_event_date
+  WHERE 
+    o.lat BETWEEN 44 AND 66 AND
+    o.lon BETWEEN -80 AND -57
+  GROUP BY 
+    o.observed_scientific_name
+)
 GROUP BY 
-  o.observed_scientific_name
+  decennie
 ORDER BY 
-  premiere_annee_observee ASC;"
+  decennie ASC;"
 
 premiere_observation <- dbGetQuery(connect, cheddar)
+
+#Sourcer cette function içi
+source("fonctions_libidoptères/Figure_premieres_observations.R")
+tracer_premieres_observations(premiere_observation)
 
 # Requête : afficher le nb d'sp sur une carte
 

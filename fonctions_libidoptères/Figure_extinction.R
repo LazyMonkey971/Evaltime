@@ -1,5 +1,5 @@
-extinction <- dbGetQuery(connect,babybel)
 
+extinction <- dbGetQuery(connect,babybel)
 
 # Définir les couleurs et marges
 bar_colors <- "#E4572E"
