@@ -23,3 +23,16 @@ Notre répertoire github est structuré ainsi:
 4. Script _targets.R : Script du target
 5. Dossier _targets : Dossier de tout le nécessaire en target
 
+Instructions:
+
+1. Les données brutes sont accessible directement dans le dossier Libidoptères, sinon les données corrigées
+peuvent être obtenues en suivant le script principal.
+
+2. Pour exécuter le projet, il ne suffit que de sourcer le script principal.
+
+3. Pour reproduire les résultats, il faut reprendre exactement les mêmes données brutes et ensuite
+refaire, étapes par étapes, le script principal.
+
+
+
+Auteurs : Maxence Comyn, Félix Laberge, Julianne Lemay-St-Laurent et Elsa Michel
