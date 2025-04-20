@@ -116,6 +116,47 @@ GROUP BY lat, lon
 obs_geo<- dbGetQuery(connect, sql_requete_4)
 print(obs_geo)
 
+# Requête : afficher le nb d'sp selon différentes latitudes au qbc: 44 à 49.5, 49.5 à 55, 55 à 60.5, 60.5 à 66
+sql_requete_5 <- "
+SELECT 
+  CASE 
+    WHEN lat >= 44 AND lat < 49.5 THEN '[44, 49.5['
+    WHEN lat >= 49.5 AND lat < 55 THEN '[49.5, 55['
+    WHEN lat >= 55 AND lat < 60.5 THEN '[55, 60.5['
+    WHEN lat >= 60.5 AND lat < 66 THEN '[60.5, 66['
+    ELSE 'hors_zone'
+  END AS classe_latitude,
+  COUNT(DISTINCT observed_scientific_name) AS nb_especes
+FROM observations
+WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
+GROUP BY classe_latitude
+ORDER BY classe_latitude;
+"
+nb_especes_par_lat <- dbGetQuery(connect, sql_requete_5)
+print(nb_especes_par_lat)
+
+# Requête : afficher le nb d'sp selon différentes longitudes au qbc: -80 à -74.25, -74.25 à -68.5, -68.5 à -62.75, -62.75 à -57
+sql_requete_6 <- "
+SELECT 
+  CASE 
+    WHEN lon >= -80 AND lon < -74.25 THEN '[-80, -74.25['
+    WHEN lon >= -74.25 AND lon < -68.5 THEN '[-74.25, -68.5['
+    WHEN lon >= -68.5 AND lon < -62.75 THEN '[-68.5, -62.75['
+    WHEN lon >= -62.75 AND lon < -57 THEN '[-62.75, -57['
+    ELSE 'hors_zone'
+  END AS classe_longitude,
+  COUNT(DISTINCT observed_scientific_name) AS nb_especes
+FROM observations
+WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
+GROUP BY classe_longitude
+ORDER BY classe_longitude;
+"
+
+nb_especes_par_lon <- dbGetQuery(connect, sql_requete_6)
+print(nb_especes_par_lon)
+
 # Requête pour le nombre d'espèce éteinte/plus observés
 babybel <- 'SELECT 
   (derniere_annee / 10) * 10 AS decennie,
