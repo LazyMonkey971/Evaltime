@@ -156,64 +156,189 @@ uniformiser_year_obs <- function(df, colonne) {
   return(df)
 }
 
-#10 
-fct_table_sql <- function(lep, db_name = "lepidopteres.db") {
-  library(DBI)
-  library(RSQLite)  
-  #Ouvrir la connexion
+  
+  
+#10
+
+bd_obs <- function(data) {
+  
   connect <- dbConnect(SQLite(),dbname = "lepidopteres.db")
   
-  creer_observations <- "
-  CREATE TABLE observations (
-  id_obs                    INTEGER PRIMARY KEY AUTOINCREMENT,
-  observed_scientific_name  TEXT,
-  dwc_event_date            DATE,
-  obs_variable              VARCHAR (20),
-  creator                   VARCHAR (150),
-  lat                       REAL,
-  lon                       REAL
-  );"
-  
-  dbSendQuery(connect,creer_observations) 
-  
-  creer_date <-"
-  CREATE TABLE dates (
-  id_obs          INTEGER, 
-  year_obs        INTEGER,
-  month_obs         INTEGER,
-  time_obs        TIME,
-  dwc_event_date  DATE,
-  PRIMARY KEY     (id_obs)
-  FOREIGN KEY     (id_obs) REFERENCES observations(id_obs)
-);"
-  
-  dbSendQuery(connect,creer_date)
-  
-  creer_sources <- "
-  CREATE TABLE sources (
-  id_obs                INTEGER,
-  original_source       VARCHAR(20),
-  creator               VARCHAR(150),
-  title                 VARCHAR(150),
-  publisher             VARCHAR(100),
-  intellectual_rights   VARCHAR(100),
-  license               VARCHAR(20),
-  owner                 VARCHAR(100),
-  PRIMARY KEY           (id_obs)
-  FOREIGN KEY           (id_obs) REFERENCES observations(id_obs)
-  );"
-  
-  dbSendQuery(connect, creer_sources)
-  
-  
   #Créer les bases de données à injecter
-  bd_observations <- as.data.frame(lep[, c("observed_scientific_name","dwc_event_date","obs_variable","creator","lat","lon")])
-  bd_dates <- as.data.frame(lep[, c("year_obs","month_obs","time_obs","dwc_event_date")])
-  bd_sources <- as.data.frame(lep[,c("original_source","creator","title","publisher","intellectual_rights","license","owner")])
+  bd_observations <- as.data.frame(data[, c("observed_scientific_name","dwc_event_date","obs_variable","creator","lat","lon")])
   
   #Injection des données
   dbWriteTable(connect, append = TRUE, name = "observations", value = bd_observations, row.names = FALSE)
+}  
+
+
+#11
+
+bd_date <- function(data) {
+  
+  connect <- dbConnect(SQLite(),dbname = "lepidopteres.db")
+  
+  #Créer les bases de données à injecter
+  bd_dates <- as.data.frame(data[, c("year_obs","month_obs","time_obs","dwc_event_date")])
+  
+  #Injection des données
   dbWriteTable(connect, append = TRUE, name = "dates", value = bd_dates, row.names = FALSE)
+  
+  
+}
+
+#12
+
+bd_source <- function(data) {
+  
+  connect <- dbConnect(SQLite(),dbname = "lepidopteres.db")
+  
+  #Créer les bases de données à injecter
+  bd_sources <- as.data.frame(data[,c("original_source","creator","title","publisher","intellectual_rights","license","owner")])
+  
+  #Injection des données
   dbWriteTable(connect, append = TRUE, name = "sources", value = bd_sources, row.names = FALSE)
   
+}
+
+#13
+
+requete1 <- function() {
+   
+    "SELECT 
+  (dates.year_obs / 10) * 10 AS decennie, COUNT(observations.id_obs) AS nb_observations
+  FROM observations
+  JOIN dates ON observations.id_obs = dates.id_obs
+  WHERE lat >= 44 AND lat <= 66
+    AND lon >= -80 AND lon <= -57
+  GROUP BY decennie
+  ORDER BY decennie;"
+}
+
+#14
+
+requete2 <- function() {
+  
+    "SELECT (dates.year_obs / 10) * 10 AS decennie, COUNT(DISTINCT observations.observed_scientific_name) AS nb_especes
+  FROM observations
+  JOIN dates ON observations.id_obs = dates.id_obs
+  WHERE observations.observed_scientific_name LIKE '% %'
+    AND lat >= 44 AND lat <= 66
+    AND lon >= -80 AND lon <= -57
+  GROUP BY decennie
+  ORDER BY decennie;"
+  
+}
+
+
+#15 
+
+requete3 <- function() {
+  
+    "SELECT lat, lon, COUNT(DISTINCT observed_scientific_name) AS nb_especes
+  FROM observations
+  WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
+  GROUP BY lat, lon"
+  
+}
+
+
+#16
+
+requete4 <- function() { 
+  
+    "SELECT 
+  CASE 
+    WHEN lat >= 44 AND lat < 49.5 THEN '[44, 49.5['
+    WHEN lat >= 49.5 AND lat < 55 THEN '[49.5, 55['
+    WHEN lat >= 55 AND lat < 60.5 THEN '[55, 60.5['
+    WHEN lat >= 60.5 AND lat <= 66 THEN '[60.5, 66]'
+    ELSE 'hors_zone'
+  END AS classe_latitude,
+  COUNT(DISTINCT observed_scientific_name) AS nb_especes
+  FROM observations
+  WHERE lat >= 44 AND lat <= 66
+    AND lon >= -80 AND lon <= -57
+  GROUP BY classe_latitude
+  ORDER BY classe_latitude;"
+  
+}
+
+
+#17
+
+requete5 <- function() {
+  
+  "SELECT 
+  (derniere_annee / 10) * 10 AS decennie,
+  COUNT(*) AS nb_extinctions
+  FROM (
+  SELECT 
+    o.observed_scientific_name,
+    MAX(d.year_obs) AS derniere_annee
+  FROM 
+    observations o
+  JOIN 
+    dates d ON o.dwc_event_date = d.dwc_event_date
+  WHERE lat >= 44 AND lat <= 66
+  AND lon >= -80 AND lon <= -57
+  GROUP BY 
+    o.observed_scientific_name
+  HAVING 
+    derniere_annee < 2020
+)
+GROUP BY 
+  decennie
+ORDER BY 
+  decennie ASC;"
+}
+
+#18
+
+requete6 <- function() {
+  
+  "SELECT 
+  (premiere_annee / 10) * 10 AS decennie,
+  COUNT(*) AS nb_premieres_observations
+FROM (
+  SELECT 
+    o.observed_scientific_name,
+    MIN(d.year_obs) AS premiere_annee
+  FROM 
+    observations o
+  JOIN 
+    dates d ON o.dwc_event_date = d.dwc_event_date
+  WHERE lat >= 44 AND lat <= 66
+    AND lon >= -80 AND lon <= -57
+  GROUP BY 
+    o.observed_scientific_name
+)
+GROUP BY 
+  decennie
+ORDER BY 
+  decennie ASC;"
+}
+
+
+#19
+
+pre_figure <- function(requete) {
+  
+  connect <- dbConnect(SQLite(),dbname = "lepidopteres.db")
+  
+  dbGetQuery(connect, requete)
+}
+
+#20
+
+fct_nb_obs_qbc <- function(data) {
+  barplot(
+    height = data$nb_observations,
+    names.arg = data$decennie,
+    col = "lightblue",
+    main = "Nombre d'observations par décennie au Québec",
+    xlab = "Décennie",
+    ylab = "Nombre d'observations"
+  )
 }
