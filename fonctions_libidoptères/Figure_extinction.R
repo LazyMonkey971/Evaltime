@@ -9,7 +9,7 @@ tracer_dernières_observations <- function (cheese){
          col = bar_colors,
          border = NA,
          space = 0.3,
-         main = "Nombre d'espèces de papillons non réobservées par décennie",
+         main = "Nombre d'espèces de papillons observées pour la dernière fois par décennie",
          xlab = "Décennie",
          ylab = "Nombre d'espèces",
          cex.main = 1.2,
