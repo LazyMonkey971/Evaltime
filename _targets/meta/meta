@@ -1,4 +1,68 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-summarize_data|function|dc619228d9319364
-data|stem|4a6be21ca4d0d610|471f4c50e8eb2dc6|2c530c1562a7fbd1|33550471||t20198.5997779899s|s449b|449|rds|local|vector|||0||
 data_summary|stem|7f1497742ef5df6d|2e4ea7419356bab6|993bdcc9ce96530c|-651121042||t20198.5997783843s|s87b|87|rds|local|vector|||0||
+summarize_data|function|dc619228d9319364|||||||||||||||
+lep|stem|b0f377a0057860bc|3b674a181ef2b68d|412e7dc4537c1db9|1362387372||t20199.6284603176s|s5866924b|5866924|rds|local|vector|||37.94||
+lepidoptere|stem|f32a4a4e295decd0|25265d4f1111c05f|1a1195bcf1d4cadc|483917650||t20199.6286553693s|s5168232b|5168232|rds|local|vector|||0.63||
+lepi|stem|0e0e7698626dc4cd|eb1edd8c7596aa2d|821cdedb8ea15a93|1853616742||t20199.6443962123s|s5862034b|5862034|rds|local|vector|||0.09||
+lepid|stem|7eee385b64e0ac31|6392ffcc2fc540d2|cd752ece556933ca|1020502818||t20199.6455115868s|s5862353b|5862353|rds|local|vector|||0.26||
+lepido|stem|4c9140e9a34d7ae7|980513e97ea5753f|77566c9a08aa8135|-1259910156||t20199.6459898433s|s5179981b|5179981|rds|local|vector|||0.39||
+lepidop|stem|46b47f9187aa0e5e|a8630916c79570ba|daecc94b89bd0920|-146057944||t20199.6472705164s|s5174885b|5174885|rds|local|vector|||0.26||
+lepidopt|stem|d23d7c96897ff863|794e05ac7544485c|15eaeaae0d679c74|-1485739249||t20199.6507468593s|s5174885b|5174885|rds|local|vector|||0.13||
+lepidopte|stem|2f432ada3682e6c1|8b1adbb21dad6942|01b4690740d52f93|110842890||t20199.6521214412s|s5171877b|5171877|rds|local|vector|||0||
+data|stem|fbb14ba8dca088e5|a09125a2b958e8b0|4fdf7a5d332d03f3|33550471||t20199.7170232255s|s450b|450|rds|local|vector|||1.93|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3|
+donnees_brutes|stem|b0f377a0057860bc|3b674a181ef2b68d|412e7dc4537c1db9|2137825509||t20199.7186093382s|s5866924b|5866924|rds|local|vector|||38.8||
+donnees_unif|stem|0e0e7698626dc4cd|eb1edd8c7596aa2d|821cdedb8ea15a93|-1325895685||t20199.7186407211s|s5862034b|5862034|rds|local|vector|||0.08||
+invalid_names|stem|eb93d38b51d93f99|6bc0ef3919806dc7|c540584c839c643d|201455056||t20199.7186411849s|s311b|311|rds|local|vector|||0.02||
+donnees_plus_unif|stem|7eee385b64e0ac31|6392ffcc2fc540d2|cd752ece556933ca|-809944006||t20199.7186714063s|s5862353b|5862353|rds|local|vector|||0.31||
+donnees_pas_dheure|stem|4c9140e9a34d7ae7|980513e97ea5753f|77566c9a08aa8135|-1399456159||t20199.7186997628s|s5179981b|5179981|rds|local|vector|||0.31||
+donnees_correction_obs|stem|46b47f9187aa0e5e|a8630916c79570ba|daecc94b89bd0920|100625854||t20199.7187245901s|s5174885b|5174885|rds|local|vector|||0.07||
+correction_jour_mois|stem|d23d7c96897ff863|794e05ac7544485c|15eaeaae0d679c74|737355921||t20199.7187492286s|s5174885b|5174885|rds|local|vector|||0.02||
+donnees_moins_colonne_na|stem|2f432ada3682e6c1|8b1adbb21dad6942|01b4690740d52f93|-1392710486||t20199.7187736559s|s5171877b|5171877|rds|local|vector|||0||
+Donnees_propre|stem|f32a4a4e295decd0|f559a8d8c38903fb|94f8436f1df77139|-771258230||t20199.7188050461s|s5168232b|5168232|rds|local|vector|||0.64||
+SQL|stem||a731baa0b05f08dd|b2890d52c2d0ee1b|1000660553||t20199.7188061562s||0|rds|local|vector|||0.06|package DBI was built under R version 4.4.3|table observations already exists
+fct_table_sql|function|222ed628d28b5413|||||||||||||||
+bd_sql|stem||c8f6575adec89858|98b045c1c9049509|1307217094||t20199.7278605751s||0|rds|local|vector|||0.78|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3. package DBI was built under R version 4.4.3|table observations already exists
+connexion_bd_sql|stem|0456022fc681f5f9|c8f6575adec89858|bbe7b900cd714d14|-500483706||t20199.7418445259s|s298b|298|rds|local|vector|||0.67|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3. package DBI was built under R version 4.4.3|
+fonc_sql|function|09e2f8e36115154e|||||||||||||||
+bd_fin|stem|49b504a63c4f58e8|4d9109aba32d52f9|f134b52e575e618e|-1964427035||t20199.7460436909s|s48b|48|rds|local|vector|||2.89||
+bd_finales|function|949fd464bf10e945|||||||||||||||
+Projet|stem|058e2e88c7387b28|fe5ac18a854be2ab|2c530c1562a7fbd1|-1576290838|Rapport.html*Rapport.Rmd|t20199.7703965265s|s638898b|638898|file|local|vector|||4.22|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3. package DBI was built under R version 4.4.3|
+bd_observations|stem|49b504a63c4f58e8|1b6f6211f86861df|a9e6bab147b1e76c|2072521054||t20199.7882724735s|s48b|48|rds|local|vector|||1.22||
+bd_dates|stem|49b504a63c4f58e8|d8ae9c2b768762a6|16224870c1e426ca|-752737679||t20199.7882950716s|s48b|48|rds|local|vector|||0.58||
+req_1|stem|080ecfec97221b37|d10294f81b486fd3|bdada1006de0857b|1510498301||t20199.8045853728s|s222b|222|rds|local|vector|||0.53|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3. package DBI was built under R version 4.4.3|
+req_2|stem|1a103ecb8cec6fab|baadc12cbd199a3e|378a21787c65c165|1499499918||t20199.8045864495s|s263b|263|rds|local|vector|||0||
+req_3|stem|3ac63ba76715da6c|2b342f29f7591bbe|e7f5f9fe2e896892|-1637647923||t20199.8045867391s|s192b|192|rds|local|vector|||0||
+req_4|stem|76dd197d4e09ff73|109f75cf9e04d4bd|aec149457c523422|-1779164238||t20199.804586978s|s300b|300|rds|local|vector|||0||
+req_5|stem|fda1477044f86873|b892f975123f383d|0f5f96a28b45a6a5|274903921||t20199.8045872139s|s312b|312|rds|local|vector|||0||
+req_6|stem|6745fcdb5c20a6e9|766a9a7fec469f27|fd0f644aeca99e42|1449677066||t20199.8045876224s|s296b|296|rds|local|vector|||0||
+pre_1|stem|27f8adacb485c416|5fb176878a7fe935|bdffbd8ee6a5ca1f|37983974||t20199.8113609636s|s253b|253|rds|local|vector|||0.77||
+pre_2|stem|7414ed99e587738e|e1b9f9fb5d1a1951|6c96b89515282e8b|-1285233154||t20199.8113777773s|s225b|225|rds|local|vector|||1.39||
+pre_3|stem|bee00389f91b4c15|25690e2b559d142d|f7bed53e7c418755|-1013155685||t20199.8113966779s|s675717b|675717|rds|local|vector|||1.49||
+pre_4|stem|e1f8db66eae6c608|5423dda050ad223f|dabeab6c94edc9c3|2090072502||t20199.811411615s|s192b|192|rds|local|vector|||1.25||
+pre_5|stem|14321a951930e9ec|ab7dbfb25791247d|e59ed1852279803c|436258840||t20199.8163840121s|s213b|213|rds|local|vector|||429.59||
+pre_6|stem|9298e165651a42bd|f685612b1abcedd4|b2411daec2c2cf56|92409820||t20199.8213021603s|s238b|238|rds|local|vector|||424.89||
+figure_1|stem|6d38297f8e44542c|3efb00ae5f169420|a66a150ab7c94cef|-247678157||t20199.8298946196s|s145b|145|rds|local|vector|||0.14||
+bd_pre_requete|function|0b50e5ffb1d019a0|||||||||||||||
+pre_requete_source|stem|49b504a63c4f58e8|7e2be9b6a0f16b24|07ffd5e877255744|-1902764337||t20199.8471788447s|s48b|48|rds|local|vector|||0.93||
+retirer_colonne_na|function|54ba15983f8078e0
+pre_figure|function|196d329565298a3e
+verify_lep_names|function|deb924936f9d395b
+bd_source|function|e2d98a1cd538f523
+fct_nb_obs_qbc|function|227ca22e4694165b
+data_base|function|20f3225fe29364b1
+bd_date|function|e5657e9922e8dd17
+uniformiser_obs_variable|function|0286b3236d9202bc
+taxonomie|object|e45ba793d6f34cf1
+retirer_heure_dwc_event_date|function|055a036a234ad33f
+uniformiser_year_obs|function|c911dd771f02f0b6
+bd_obs|function|ead2c39a7be92421
+requete1|function|532e94a410472976
+renommer_col_day_obs_en_month|function|333f02c411456503
+requete2|function|65bf700632ee161b
+requete3|function|7ee01486e46518c7
+uniformiser_val_nul|function|d1631b44d40eca8f
+requete4|function|25fc9043ea1ab66f
+requete5|function|78db2607509d7595
+fusion_csv_lep|function|ba7d8deece7fc20f
+requete6|function|c550a90cd7099141
+bd_sources|stem|49b504a63c4f58e8|69177060f375ede7|d158e52012090f42|-746807441||t20199.8497623338s|s48b|48|rds|local|vector|||1.03||
