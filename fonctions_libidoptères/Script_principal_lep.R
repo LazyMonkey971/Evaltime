@@ -171,6 +171,7 @@ ORDER BY
 
 
 extinction <- dbGetQuery(connect,babybel)
+print(extinction)
 
 source("fonctions_libidoptères/Figure_extinction.R")
 tracer_dernières_observations(extinction)
@@ -198,7 +199,7 @@ ORDER BY
   decennie ASC;"
 
 premiere_observation <- dbGetQuery(connect, cheddar)
-
+print(premiere_observation)
 source("fonctions_libidoptères/Figure_premieres_observations.R")
 tracer_premieres_observations(premiere_observation)
 
