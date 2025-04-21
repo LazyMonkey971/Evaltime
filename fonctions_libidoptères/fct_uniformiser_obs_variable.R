@@ -1,6 +1,5 @@
 # Fonction pour vérifier et uniformiser les noms de la colonne "obs_variable"
 # Nom de la fonction: uniformiser_obs_variable 
-library(dplyr)
 
 uniformiser_obs_variable <- function(dataframe) {
  

@@ -6,7 +6,7 @@ unique(lep$obs_unit)
 
 retirer_colonne_na <- function(dataframe, colonne) {
   # Vérifier si la colonne existe dans le dataframe
-  library(dplyr )
+  
   if(colonne %in% colnames(dataframe)) {
     # Vérifier si la colonne contient uniquement des NA
     if(all(is.na(dataframe[[colonne]]))) {
