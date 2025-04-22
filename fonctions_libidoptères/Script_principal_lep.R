@@ -16,6 +16,8 @@ library(RSQLite)
 library(ggplot2)
 #pour la carte
 library(leaflet)
+#pour target 
+library(targets)
 
 #------------Script principal - Appel des fonctions--------------
 
