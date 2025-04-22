@@ -56,21 +56,19 @@ Pour analyser les variations spatiales, un graphique du nombre d’espèces par 
 
 Comme le montre la figure 1, la décennie qui présente le plus grand nombre d’espèces, soit 2034 espèces, est celle de 2020. Le nombre d’espèces observées pour la première fois était supérieur dans la décennie 2000, soit 1366 espèces (figure 2). Au total, 506 et 459 espèces ont été vues pour la dernière fois respectivement durant les décennies 2010 puis 2000, ce qui est plus élevé que pour les autres années (figure 3). Comme présenté par la figure 4, la majorité des données proviennent du 21e siècle. En effet, 42 411 observations ont été collectées de 1860 à 1999 alors que 233 214 observations ont été reportées de 2000 à 2023. La figure 5 montre que les espèces de lépidoptères sont plus nombreuses au sud, plus précisément entre les latitudes de 44 à 49.5 degrés. Peu ont été reportées au nord. La carte de la figure 6 illustre la position des observations reportées.
 
-***
-
+------------------------------------------------------------------------
 
 ![Nombre d’espèces de papillons observées par décennie au Québec](nb_esp_obs_par_decennie.png){width="40%," height="40%"}
 
-![Nombre d’espèces de papillons observées pour la première fois par décennie au Québec](fig_nb_esp_obs_premìere_fois.png){width="40%," height="40%"}
+![Nombre d’espèces de papillons observées pour la première fois par décennie au Québec](fig_nb_esp_obs_premiere_fois.png){width="40%," height="40%"}
 
-![Nombre d’espèces de papillons observées pour la dernière fois par décennie au Québec](fig_nb_esp_obs_dernìere_fois.png){width="40%," height="40%"}
+![Nombre d’espèces de papillons observées pour la dernière fois par décennie au Québec](fig_nb_esp_obs_derniere_fois){width="40%," height="40%"}
 
 ![Nombre d’observations par décennie au Québec](nb_obs_par_decennie.jpeg){width="40%," height="40%"}
 
 ![Nombre d’espèces de papillons par classe de latitude au Québec](nb_esp_par_latitude.png){width="40%," height="40%"}
 
 ![Carte des observations](Carte.png){width="40%," height="40%"}
-
 
 ------------------------------------------------------------------------
 
@@ -112,18 +110,18 @@ Une partie des données a été faite avec la science citoyenne. Cela pourrait e
 
 -   [5] K. Müller, H. Wickham, D. James, et S. Falcon, RSQLite: SQLite Interface for R\_. R package version 2.3.9,. (2024). [En ligne]. Disponible sur: <https://CRAN.R-project.org/package=RSQLite>
 
-- [6] J. Cheng, B. Schloerke, B. Karambelkar, et Y. Xie, leaflet: Create Interactive Web Maps with the JavaScript « Leaflet » Library\_. R package version 2.2.2,. (2024). [En ligne]. Disponible sur: <https://CRAN.R-project.org/package=leaflet>
+-   [6] J. Cheng, B. Schloerke, B. Karambelkar, et Y. Xie, leaflet: Create Interactive Web Maps with the JavaScript « Leaflet » Library\_. R package version 2.2.2,. (2024). [En ligne]. Disponible sur: <https://CRAN.R-project.org/package=leaflet>
 
-- [7] H. Wickham, ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York,. (2016). [En ligne]. Disponible sur: <https://ggplot2.tidyverse.org> 
+-   [7] H. Wickham, ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York,. (2016). [En ligne]. Disponible sur: <https://ggplot2.tidyverse.org>
 
-- [8] W. Landau, The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing. Journal of Open Source Software, 6(57), 2959,. (2021). [En ligne]. Disponible sur: <https://doi.org/10.21105/joss.02959> 
+-   [8] W. Landau, The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing. Journal of Open Source Software, 6(57), 2959,. (2021). [En ligne]. Disponible sur: <https://doi.org/10.21105/joss.02959>
 
-- [9] R. F. Chapman, « Entomology in the Twentieth Century », Annual Review of Entomology, vol. 45, no Volume 45, 2000, p. 261‑285, janv. 2000, doi: 10.1146/annurev.ento.45.1.261. 
+-   [9] R. F. Chapman, « Entomology in the Twentieth Century », Annual Review of Entomology, vol. 45, no Volume 45, 2000, p. 261‑285, janv. 2000, doi: 10.1146/annurev.ento.45.1.261.
 
-- [10] M. J. Costello, S. Wilson, et B. Houlding, « Predicting Total Global Species Richness Using Rates of Species Description and Estimates of Taxonomic Effort », Systematic Biology, vol. 61, no 5, p. 871, oct. 2012, doi: 10.1093/sysbio/syr080. 
+-   [10] M. J. Costello, S. Wilson, et B. Houlding, « Predicting Total Global Species Richness Using Rates of Species Description and Estimates of Taxonomic Effort », Systematic Biology, vol. 61, no 5, p. 871, oct. 2012, doi: 10.1093/sysbio/syr080.
 
-- [11] P. White et J. T. Kerr, « Contrasting spatial and temporal global change impacts on butterfly species richness during the 20th century », Ecography, vol. 29, no 6, p. 908‑918, 2006, doi: 10.1111/j.2006.0906-7590.04685.x. 
+-   [11] P. White et J. T. Kerr, « Contrasting spatial and temporal global change impacts on butterfly species richness during the 20th century », Ecography, vol. 29, no 6, p. 908‑918, 2006, doi: 10.1111/j.2006.0906-7590.04685.x.
 
-- [12] P. J. T. White et J. T. Kerr, « Human impacts on environment–diversity relationships: evidence for biotic homogenization from butterfly species richness patterns », Global Ecology and Biogeography, vol. 16, no 3, p. 290‑299, 2007, doi: 10.1111/j.1466-8238.2007.00298.x. 
+-   [12] P. J. T. White et J. T. Kerr, « Human impacts on environment–diversity relationships: evidence for biotic homogenization from butterfly species richness patterns », Global Ecology and Biogeography, vol. 16, no 3, p. 290‑299, 2007, doi: 10.1111/j.1466-8238.2007.00298.x.
 
-- [13] O. Arazy, K. Kaplan-Mintz, D. Malkinson, et Y. Nagar, « A local community on a global collective intelligence platform: A case study of individual preferences and collective bias in ecological citizen science », PLOS ONE, vol. 19, no 8, p. e0308552, août 2024, doi: 10.1371/journal.pone.0308552.
+-   [13] O. Arazy, K. Kaplan-Mintz, D. Malkinson, et Y. Nagar, « A local community on a global collective intelligence platform: A case study of individual preferences and collective bias in ecological citizen science », PLOS ONE, vol. 19, no 8, p. e0308552, août 2024, doi: 10.1371/journal.pone.0308552.
