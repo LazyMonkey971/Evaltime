@@ -1,0 +1,17 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.4.8)  22 APR 2025 11:20
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./Untitled.tex
+(Untitled.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(pnas-new.cls
+Document Class: pnas-new 2018/05/06, v1.44
+
+
+! Sorry, but C:\Users\maxen\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe did not succeed.
+
+! The log file hopefully contains the information to get MiKTeX going again:
+
+!   C:\Users\maxen\AppData\Local\MiKTeX\miktex\log\pdflatex.log

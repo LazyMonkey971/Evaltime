@@ -9,7 +9,6 @@ lepido|stem|4c9140e9a34d7ae7|980513e97ea5753f|77566c9a08aa8135|-1259910156||t201
 lepidop|stem|46b47f9187aa0e5e|a8630916c79570ba|daecc94b89bd0920|-146057944||t20199.6472705164s|s5174885b|5174885|rds|local|vector|||0.26||
 lepidopt|stem|d23d7c96897ff863|794e05ac7544485c|15eaeaae0d679c74|-1485739249||t20199.6507468593s|s5174885b|5174885|rds|local|vector|||0.13||
 lepidopte|stem|2f432ada3682e6c1|8b1adbb21dad6942|01b4690740d52f93|110842890||t20199.6521214412s|s5171877b|5171877|rds|local|vector|||0||
-data|stem|fbb14ba8dca088e5|a09125a2b958e8b0|4fdf7a5d332d03f3|33550471||t20199.7170232255s|s450b|450|rds|local|vector|||1.93|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3|
 donnees_brutes|stem|b0f377a0057860bc|3b674a181ef2b68d|412e7dc4537c1db9|2137825509||t20199.7186093382s|s5866924b|5866924|rds|local|vector|||38.8||
 donnees_unif|stem|0e0e7698626dc4cd|eb1edd8c7596aa2d|821cdedb8ea15a93|-1325895685||t20199.7186407211s|s5862034b|5862034|rds|local|vector|||0.08||
 invalid_names|stem|eb93d38b51d93f99|6bc0ef3919806dc7|c540584c839c643d|201455056||t20199.7186411849s|s311b|311|rds|local|vector|||0.02||
@@ -29,21 +28,23 @@ bd_finales|function|949fd464bf10e945|||||||||||||||
 Projet|stem|058e2e88c7387b28|fe5ac18a854be2ab|2c530c1562a7fbd1|-1576290838|Rapport.html*Rapport.Rmd|t20199.7703965265s|s638898b|638898|file|local|vector|||4.22|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3. package DBI was built under R version 4.4.3|
 bd_observations|stem|49b504a63c4f58e8|1b6f6211f86861df|a9e6bab147b1e76c|2072521054||t20199.7882724735s|s48b|48|rds|local|vector|||1.22||
 bd_dates|stem|49b504a63c4f58e8|d8ae9c2b768762a6|16224870c1e426ca|-752737679||t20199.7882950716s|s48b|48|rds|local|vector|||0.58||
-req_1|stem|080ecfec97221b37|d10294f81b486fd3|bdada1006de0857b|1510498301||t20199.8045853728s|s222b|222|rds|local|vector|||0.53|package ggplot2 was built under R version 4.4.3. package leaflet was built under R version 4.4.3. package dplyr was built under R version 4.4.2. package data.table was built under R version 4.4.3. package RSQLite was built under R version 4.4.3. package DBI was built under R version 4.4.3|
-req_2|stem|1a103ecb8cec6fab|baadc12cbd199a3e|378a21787c65c165|1499499918||t20199.8045864495s|s263b|263|rds|local|vector|||0||
-req_3|stem|3ac63ba76715da6c|2b342f29f7591bbe|e7f5f9fe2e896892|-1637647923||t20199.8045867391s|s192b|192|rds|local|vector|||0||
-req_4|stem|76dd197d4e09ff73|109f75cf9e04d4bd|aec149457c523422|-1779164238||t20199.804586978s|s300b|300|rds|local|vector|||0||
-req_5|stem|fda1477044f86873|b892f975123f383d|0f5f96a28b45a6a5|274903921||t20199.8045872139s|s312b|312|rds|local|vector|||0||
-req_6|stem|6745fcdb5c20a6e9|766a9a7fec469f27|fd0f644aeca99e42|1449677066||t20199.8045876224s|s296b|296|rds|local|vector|||0||
 pre_1|stem|27f8adacb485c416|5fb176878a7fe935|bdffbd8ee6a5ca1f|37983974||t20199.8113609636s|s253b|253|rds|local|vector|||0.77||
 pre_2|stem|7414ed99e587738e|e1b9f9fb5d1a1951|6c96b89515282e8b|-1285233154||t20199.8113777773s|s225b|225|rds|local|vector|||1.39||
 pre_3|stem|bee00389f91b4c15|25690e2b559d142d|f7bed53e7c418755|-1013155685||t20199.8113966779s|s675717b|675717|rds|local|vector|||1.49||
 pre_4|stem|e1f8db66eae6c608|5423dda050ad223f|dabeab6c94edc9c3|2090072502||t20199.811411615s|s192b|192|rds|local|vector|||1.25||
 pre_5|stem|14321a951930e9ec|ab7dbfb25791247d|e59ed1852279803c|436258840||t20199.8163840121s|s213b|213|rds|local|vector|||429.59||
-pre_6|stem|9298e165651a42bd|f685612b1abcedd4|b2411daec2c2cf56|92409820||t20199.8213021603s|s238b|238|rds|local|vector|||424.89||
 figure_1|stem|6d38297f8e44542c|3efb00ae5f169420|a66a150ab7c94cef|-247678157||t20199.8298946196s|s145b|145|rds|local|vector|||0.14||
 bd_pre_requete|function|0b50e5ffb1d019a0|||||||||||||||
 pre_requete_source|stem|49b504a63c4f58e8|7e2be9b6a0f16b24|07ffd5e877255744|-1902764337||t20199.8471788447s|s48b|48|rds|local|vector|||0.93||
+bd_sources|stem|49b504a63c4f58e8|69177060f375ede7|d158e52012090f42|-746807441||t20199.8497623338s|s48b|48|rds|local|vector|||1.03||
+req_6|stem|02eeb00cfe5da389|766a9a7fec469f27|fd0f644aeca99e42|1449677066||t20199.8714271856s|s297b|297|rds|local|vector|||1.43|le package 'ggplot2' a été compilé avec la version R 4.2.3. le package 'leaflet' a été compilé avec la version R 4.2.3. le package 'dplyr' a été compilé avec la version R 4.2.3. le package 'data.table' a été compilé avec la version R 4.2.3. le package 'RSQLite' a été compilé avec la version R 4.2.3|
+data|stem|aae33a2450f519a3|a09125a2b958e8b0|4fdf7a5d332d03f3|33550471||t20199.8714297478s|s450b|450|rds|local|vector|||0||
+req_1|stem|aa89b5b5cade50e8|d10294f81b486fd3|bdada1006de0857b|1510498301||t20199.8714303899s|s222b|222|rds|local|vector|||0||
+req_2|stem|47abb9219d37eacb|baadc12cbd199a3e|378a21787c65c165|1499499918||t20199.871430774s|s264b|264|rds|local|vector|||0||
+req_3|stem|9525a90d49e2c402|2b342f29f7591bbe|e7f5f9fe2e896892|-1637647923||t20199.8714310983s|s192b|192|rds|local|vector|||0||
+req_4|stem|9a22547593e44522|109f75cf9e04d4bd|aec149457c523422|-1779164238||t20199.8714313698s|s300b|300|rds|local|vector|||0||
+req_5|stem|db16372dcad2ab14|b892f975123f383d|0f5f96a28b45a6a5|274903921||t20199.8714317589s|s313b|313|rds|local|vector|||0||
+pre_6|stem|9298e165651a42bd|f685612b1abcedd4|7465a30fab7583d5|92409820||t20199.8213021603s||238|rds|local|vector|||0.08||no such table: observations
 retirer_colonne_na|function|54ba15983f8078e0
 pre_figure|function|196d329565298a3e
 verify_lep_names|function|deb924936f9d395b
@@ -65,4 +66,4 @@ requete4|function|25fc9043ea1ab66f
 requete5|function|78db2607509d7595
 fusion_csv_lep|function|ba7d8deece7fc20f
 requete6|function|c550a90cd7099141
-bd_sources|stem|49b504a63c4f58e8|69177060f375ede7|d158e52012090f42|-746807441||t20199.8497623338s|s48b|48|rds|local|vector|||1.03||
+rmarkdown|stem|b9f76e3c04deb623|a3f95584c31b05b7|2c530c1562a7fbd1|689373785|rapport_libidotères.html*Rapport_libidoptères.Rmd|t20200.6281583334s||72854|file|local|vector|||1.45|le package 'ggplot2' a été compilé avec la version R 4.2.3. le package 'leaflet' a été compilé avec la version R 4.2.3. le package 'dplyr' a été compilé avec la version R 4.2.3. le package 'data.table' a été compilé avec la version R 4.2.3. le package 'RSQLite' a été compilé avec la version R 4.2.3|objet 'output' introuvable
