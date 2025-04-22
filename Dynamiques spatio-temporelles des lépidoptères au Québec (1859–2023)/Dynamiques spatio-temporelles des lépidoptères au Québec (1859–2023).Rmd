@@ -21,6 +21,7 @@ address:
     state: Québec
     postcode: J1K 2R1
     country: Canada
+fig.pos: 'H'
 
 abstract: |
   Ce projet s’intéresse aux variations temporelles et spatiales des lépidoptères au Québec à partir d’observations récoltés entre 1859 et 2023. Des analyses ont permis d’étudier le nombre d’espèces observées, pour la première et la dernière fois par décennie, leur répartition selon la latitude et la localisation des observations. Les dernières décennies présentent davantage d’observations et d’espèces vues pour la première et la dernière fois. Ces résultats s’expliquent par un déclin possible d’espèces et un échantillonnage plus intensif, grâce à l’avancée scientifique. Puisque la température y est plus élevée, le sud du Québec montre une plus grande richesse spécifique. L’utilisation de données issues de la science citoyenne introduit certains biais, concernant les préférences de la population et le fait qu’elle est plus dense au sud.
@@ -57,6 +58,28 @@ Pour analyser les variations spatiales, un graphique du nombre d’espèces par 
 Comme le montre la figure 1, la décennie qui présente le plus grand nombre d’espèces, soit 2034 espèces, est celle de 2020. Le nombre d’espèces observées pour la première fois était supérieur dans la décennie 2000, soit 1366 espèces (figure 2). Au total, 506 et 459 espèces ont été vues pour la dernière fois respectivement durant les décennies 2010 puis 2000, ce qui est plus élevé que pour les autres années (figure 3). Comme présenté par la figure 4, la majorité des données proviennent du 21e siècle. En effet, 42 411 observations ont été collectées de 1860 à 1999 alors que 233 214 observations ont été reportées de 2000 à 2023. La figure 5 montre que les espèces de lépidoptères sont plus nombreuses au sud, plus précisément entre les latitudes de 44 à 49.5 degrés. Peu ont été reportées au nord. La carte de la figure 6 illustre la position des observations reportées.
 
 ------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ![Nombre d’espèces de papillons observées par décennie au Québec](nb_esp_obs_par_decennie.png){width="40% " height="40%"}
 
