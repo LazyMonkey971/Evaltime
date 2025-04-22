@@ -61,9 +61,9 @@ Comme le montre la figure 1, la décennie qui présente le plus grand nombre d�
 
 ![Nombre d’espèces de papillons observées par décennie au Québec](nb_esp_obs_par_decennie.png){width="40%," height="40%"}
 
-![Nombre d’espèces de papillons observées pour la première fois par décennie au Québec](fig_nb_esp_obs_première_fois.png){width="40%," height="40%"}
+![Nombre d’espèces de papillons observées pour la première fois par décennie au Québec](fig_nb_esp_obs_premìere_fois.png){width="40%," height="40%"}
 
-![Nombre d’espèces de papillons observées pour la dernière fois par décennie au Québec](fig_nb_esp_obs_dernière_fois.png){width="40%," height="40%"}
+![Nombre d’espèces de papillons observées pour la dernière fois par décennie au Québec](fig_nb_esp_obs_dernìere_fois.png){width="40%," height="40%"}
 
 ![Nombre d’observations par décennie au Québec](nb_obs_par_decennie.jpeg){width="40%," height="40%"}
 
