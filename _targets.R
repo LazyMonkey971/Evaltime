@@ -17,7 +17,8 @@ tar_option_set(packages = c(
   "DBI"
 ))
 
-list(
+
+tar_plan(
   tar_target(data, data_base()),
   tar_target(donnees_brutes, fusion_csv_lep(data)),
   tar_target(invalid_names, verify_lep_names(donnees_brutes, taxonomie)),
@@ -44,5 +45,6 @@ list(
   tar_target(pre_5, pre_figure(req_5)),
   tar_target(pre_6, pre_figure(req_6)),
   tar_target(figure_1, fct_nb_obs_qbc(pre_1)),
-  tarchetypes::tar_render(Projet, path = "Rapport.Rmd")
+  tar_render(rmarkdown, path= "Rapport_libidoptères.Rmd", output_file = "rapport_libidotères")
 )
+  

@@ -1,9 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-<<<<<<< HEAD
-data|stem|5af89c70f1df7c44|471f4c50e8eb2dc6|2c530c1562a7fbd1|33550471||t20198.7621634928s|s451b|451|rds|local|vector|||0.001||
-data_summary|stem|edc97fe7632d7bfd|2e4ea7419356bab6|4eb5b95106dd2f83|-651121042||t20198.7621635942s|s87b|87|rds|local|vector|||0||
-summarize_data|function|dc619228d9319364
-=======
+
 data_summary|stem|7f1497742ef5df6d|2e4ea7419356bab6|993bdcc9ce96530c|-651121042||t20198.5997783843s|s87b|87|rds|local|vector|||0||
 summarize_data|function|dc619228d9319364|||||||||||||||
 lep|stem|b0f377a0057860bc|3b674a181ef2b68d|412e7dc4537c1db9|1362387372||t20199.6284603176s|s5866924b|5866924|rds|local|vector|||37.94||
@@ -71,4 +67,4 @@ requete5|function|78db2607509d7595
 fusion_csv_lep|function|ba7d8deece7fc20f
 requete6|function|c550a90cd7099141
 bd_sources|stem|49b504a63c4f58e8|69177060f375ede7|d158e52012090f42|-746807441||t20199.8497623338s|s48b|48|rds|local|vector|||1.03||
->>>>>>> b6ca1d3a004f286ae21edf786a6b9f6c40994469
+b6ca1d3a004f286ae21edf786a6b9f6c40994469

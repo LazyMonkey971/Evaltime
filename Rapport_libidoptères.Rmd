@@ -1,0 +1,109 @@
+---
+title: "rapport libidoptères"
+author: "nous"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Analyse des variations
+<!-- Ajouter une ligne horizontale -->
+***
+
+<!-- Insérer des lignes -->
+<br><br>
+
+
+
+
+***
+
+Résumé
+
+Ce projet s’intéresse aux variations temporelles et spatiales des lépidoptères au Québec à partir d’observations récoltés entre 1859 et 2023. Des analyses avec R ont permis d’étudier le nombre d’espèces observées, et ce, pour la première et la dernière fois par décennie, leur répartition selon la latitude et la localisation des observations. Les dernières décennies présentent davantage d’observations et d’espèces vues pour la première et la dernière fois. Ces résultats s’expliquent par un déclin possible d’espèces et un échantillonnage plus intensif, grâce à l’avancée scientifique. Puisque la température y est plus élevée, le sud du Québec montre une plus grande richesse spécifique. L’utilisation de données issues de la science citoyenne introduit certains biais, concernant les préférences des observateurs et le fait que la population est plus dense au sud.  
+
+<br><br>
+
+
+***
+
+Introduction 
+
+Les insectes, sont grandement impactés par l’activité humaine et ce qui en découle, comme les changements climatiques. L’exploration du monde vivant, tout en exerçant une pression sur la biodiversité, est aussi un levier essentiel pour mieux la comprendre et la préserver. Dans ce contexte, la science citoyenne est une bonne façon de récolter beaucoup de données à moindre coûts. Une partie des données utilisées pour ce projet provient justement d’initiatives de science citoyenne. Bien que les insectes jouent un rôle écologique majeur, ils demeurent globalement sous-représentés dans la littérature scientifique.  Du moins, parmi tous les taxons d’insectes, les lépidoptères, le sujet de ce projet, sont les plus étudiés [1]. Il est alors pertinent de se demander comment la structure des communautés de papillons varie au niveau temporel et spatial au Québec. Des analyses ont été faites afin d’identifier combien d’espèces ont été observées pour la première et la dernière fois pendant chaque décennie pour les années où les données ont été récoltés. Des graphiques ont ensuite été conçus pour déterminer à quelles latitudes se retrouvent le plus d’espèces. Finalement, une carte des observations a été créée pour illustrer où elles sont localisées.
+
+
+<br><br>
+
+***
+
+Méthodes 
+
+Un jeu de données de plus de 400 000 observations ponctuelles a été analysé avec le logiciel R [2]. Ces observations proviennent de différentes sources et ont été échantillonnées entre les années 1859 à 2023.  Les fichiers .csv ont été fusionnés à l’aide de la librairie data.table_1.17.0 [3]. Le tout a ensuite été nettoyé avec dplyr_1.1.4[4]. Pour faire les tables avec le langage SQL, la librairie open source RSQLite_2.3 [5] fut utilisée.  Les données ont été analysées en ne conservant que celles comprises dans la géographie du Québec (de latitude entre 44 et 66 degrés et de longitude allant de -80 à -57 degrés). Des figures ont été faites pour visualiser le nombre d’espèces par décennie (vus pour la première fois, la dernière fois et observées au total). Ces données ont été regroupées par décennies pour simplifier la visualisation, considérant que, durant les premières années, peu d’activité ont été reportées. Cependant, les décennies 1860, 1870 et 2020 ne comportent pas 10 ans de données contrairement aux autres. Par exemple, il n’y a pas de données concernant 1870 ou 1871. De plus, la décennie 2020 n’a pas été prise en compte pour l’analyse puisqu’il est normal que les dernières observations de ces espèces soient pendant les dernières années de la base de données.  
+
+ 
+
+Pour analyser les variations spatiales, un graphique du nombre d’espèces par latitude a été fait, accompagné d’une carte localisant les observations. Nous avons eu recours aux librairies leaflet_2.2.2 [6] et ggplot2_3.5.1[7] pour réaliser ces figures et la carte. La librairie targets [8] fut utilisée pour rendre le processus plus efficace par un pipeline.  
+
+ 
+***
+
+Résultats 
+
+Comme le montre la figure 1, la décennie qui présente le plus grand nombre d’espèces, soit 2034 espèces, est celle de 2020. Le nombre d’espèces observés pour la première fois était supérieur dans la décennie 2000, soit 1366 espèces (figure 2). Au total, 506 et 459 espèces ont été vues pour la dernière fois respectivement durant les décennies 2010 puis 2000, ce qui est plus élevé que pour les autres années (figure 3). Tel que présenté par la figure 4, la majorité des données proviennent du 21e siècle. En effet, 42 411 observations ont été collecté de 1860 à 1999 alors que 233 214 observations ont été reportées de 2000 à 2023. La figure 5 montre que les espèces de lépidoptères sont plus nombreuses au sud, plus précisément entre les latitudes de 44 à 49.5 degrés. Peu ont été reportées au nord. La carte de la figure 6 illustre la position des observations reportées. 
+
+<center>
+![Coding course](./img/programmer.gif)
+</center>
+
+<br><br>
+
+
+## Insérer une table
+***
+Les tables ont un plus beau rendu lorsqu'on utlise un thème [prettydoc](https://prettydoc.statr.me/index.html)
+
+<br>
+
+| Time          | Session  |   Topic |
+|:--------------|:--------:|--------:|
+| *left*        | *center* | *right* |
+| 01:00 - 01:50 |    1     | Anatomy |
+| 01:50 - 02:00 |          | *Break* |
+| 02:00 - 02:45 |    2     |  Tables |
+| 02:45 - 03:00 |          | *Break* |
+
+<br><br>
+
+
+## Insérer une citation
+***
+
+> Être ou ne pas être :
+
+> Là est la question !
+
+<br><br>
+
+
+## Conclusion
+***
+
+* R Markdown est génial.
+    * Le rapport entre la mise en forme et le contenu est excellent.
+    * Pour les analyses exploratoires, les articles de blog et autres, R Markdown sera un puissant stimulateur de productivité.
+* L'équipe de RStudio a rendu l'ensemble du processus très convivial.
+    * RStudio fournit des raccourcis utiles pour la compilation en HTML et l'exécution des fragments de code. Ces raccourcis sont présentés de manière claire.
+    * Les extensions incorporées à Markdown, en particulier la prise en charge des formules et des tableaux, sont particulièrement utiles.
+    * La fonction "sauter au fragment" facilite la navigation. Cela aide si les fragments de code ont des noms informatifs.
+    * L'auto-complétion pour les options des fragments de code R est vraiment utile. Voir également [la documentation des options de fragment sur le site web de knitr](http://yihui.name/knitr/options).
+* D'autres publications récentes sur R Markdown incluent celles de :
+     * [Christopher Gandrud](http://christophergandrud.blogspot.com.au/2012/05/dynamic-content-with-rstudio-markdown.html)
+     * [Markcus Gesmann](http://lamages.blogspot.com.au/2012/05/interactive-reports-in-r-with-knitr-and.html)
+     * [Rstudio sur R Markdown](http://rstudio.org/docs/authoring/using_markdown)
+     * [Yihui Xie](http://yihui.name/knitr/) : je tiens vraiment à le remercier pour le développement de `knitr`. Il a également publié [cet exemple de R Markdown](https://github.com/yihui/knitr/blob/master/inst/examples/knitr-minimal.Rmd).
