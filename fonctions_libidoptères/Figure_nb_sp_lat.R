@@ -3,7 +3,7 @@
 fct_fig_nb_sp_lat <- function(data) {
   barplot(
     data$nb_especes,
-    names.arg = nb_sp_lat$classe_latitude,
+    names.arg = data$classe_latitude,
     col = "skyblue",
     main = "Nombre d'espèces par classe de latitude au Québec",
     xlab = "Classe de latitude",
