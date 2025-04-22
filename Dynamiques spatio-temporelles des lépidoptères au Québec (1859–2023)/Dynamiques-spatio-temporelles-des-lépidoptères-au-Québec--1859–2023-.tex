@@ -59,6 +59,17 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+% From pandoc table feature
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 
 
 
@@ -181,47 +192,20 @@ lépidoptères sont plus nombreuses au sud, plus précisément entre les
 latitudes de 44 à 49.5 degrés. Peu ont été reportées au nord. La carte
 de la figure 6 illustre la position des observations reportées.
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.4\textheight]{nb_esp_obs_par_decennie.png}
-\caption{Nombre d'espèces de papillons observées par décennie au Québec}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.4\textheight]{fig_nb_esp_obs_premiere_fois.png}
-\caption{Nombre d'espèces de papillons observées pour la première fois
-par décennie au Québec}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.4\textheight]{fig_nb_esp_obs_derniere_fois}
-\caption{Nombre d'espèces de papillons observées pour la dernière fois
-par décennie au Québec}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.4\textheight]{nb_obs_par_decennie.jpeg}
-\caption{Nombre d'observations par décennie au Québec}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.4\textheight]{nb_esp_par_latitude.png}
-\caption{Nombre d'espèces de papillons par classe de latitude au Québec}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.4\textheight]{Carte.png}
-\caption{Carte des observations}
-\end{figure}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+* \\
+\includegraphics[width=\textwidth,height=0.4\textheight]{nb_esp_obs_par_decennie.png} \\
+\includegraphics[width=\textwidth,height=0.4\textheight]{fig_nb_esp_obs_premiere_fois.png} \\
+\includegraphics[width=\textwidth,height=0.4\textheight]{fig_nb_esp_obs_derniere_fois} \\
+\includegraphics[width=\textwidth,height=0.4\textheight]{nb_obs_par_decennie.jpeg} \\
+\includegraphics[width=\textwidth,height=0.4\textheight]{nb_esp_par_latitude.png} \\
+\includegraphics[width=\textwidth,height=0.4\textheight]{Carte.png} \\
+\end{longtable}
 
 \section{Discussion}\label{discussion}
 
