@@ -1,6 +1,5 @@
 # Fonction qui rassemble tous les fichiers de lépidoptères CSV en un gros data frame (lep)
 #Nom de la fonction: fusion_csv_lep
-library(data.table)
 
 fusion_csv_lep <- function(data1) {
   

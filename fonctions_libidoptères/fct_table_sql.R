@@ -1,5 +1,3 @@
-library(RSQLite)
-
 #Ouvrir la connexion
 connect <- dbConnect(SQLite(),dbname = "lepidopteres.db")
 

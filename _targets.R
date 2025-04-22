@@ -1,23 +1,48 @@
 library(targets)
-# This is an example _targets.R file. Every
-# {targets} pipeline needs one.
-# Use tar_script() to create _targets.R and tar_edit()
-# to open it again for editing.
-# Then, run tar_make() to run the pipeline
-# and tar_read(data_summary) to view the results.
+library(tarchetypes)
 
-# Define custom functions and other global objects.
-# This is where you write source(\"R/functions.R\")
-# if you keep your functions in external scripts.
-summarize_data <- function(dataset) {
-  colMeans(dataset)
-}
+source(file.path("fonctions_libidoptères", "Fonctions.R"))
 
-# Set target-specific options such as packages:
-# tar_option_set(packages = "utils") # nolint
+taxonomie <- read.csv("taxonomie.csv")
 
-# End this file with a list of target objects.
+
+
+
+tar_option_set(packages = c(
+  "ggplot2",
+  "leaflet",
+  "dplyr",
+  "data.table",
+  "RSQLite",
+  "DBI"
+))
+
 list(
-  tar_target(data, data.frame(x = sample.int(100), y = sample.int(100))),
-  tar_target(data_summary, summarize_data(data)) # Call your custom functions.
+  tar_target(data, data_base()),
+  tar_target(donnees_brutes, fusion_csv_lep(data)),
+  tar_target(invalid_names, verify_lep_names(donnees_brutes, taxonomie)),
+  tar_target(donnees_unif, uniformiser_val_nul(donnees_brutes, "time_obs")),
+  tar_target(donnees_plus_unif, uniformiser_val_nul(donnees_unif, "license")),
+  tar_target(donnees_pas_dheure, retirer_heure_dwc_event_date(donnees_plus_unif, "dwc_event_date")),
+  tar_target(donnees_correction_obs, uniformiser_obs_variable(donnees_pas_dheure)),
+  tar_target(correction_jour_mois, renommer_col_day_obs_en_month(donnees_correction_obs)),
+  tar_target(donnees_moins_colonne_na, retirer_colonne_na(correction_jour_mois, "obs_unit")),
+  tar_target(Donnees_propre, uniformiser_year_obs(donnees_moins_colonne_na, "year_obs")),
+  tar_target(bd_observations, bd_obs(Donnees_propre)),
+  tar_target(bd_dates, bd_date(Donnees_propre)),
+  tar_target(bd_sources, bd_source(Donnees_propre)),
+  tar_target(req_1, requete1()),
+  tar_target(req_2, requete2()),
+  tar_target(req_3, requete3()),
+  tar_target(req_4, requete4()),
+  tar_target(req_5, requete5()),
+  tar_target(req_6, requete6()),
+  tar_target(pre_1, pre_figure(req_1)),
+  tar_target(pre_2, pre_figure(req_2)),
+  tar_target(pre_3, pre_figure(req_3)),
+  tar_target(pre_4, pre_figure(req_4)),
+  tar_target(pre_5, pre_figure(req_5)),
+  tar_target(pre_6, pre_figure(req_6)),
+  tar_target(figure_1, fct_nb_obs_qbc(pre_1)),
+  tarchetypes::tar_render(Projet, path = "Rapport.Rmd")
 )

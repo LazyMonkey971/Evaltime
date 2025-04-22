@@ -5,20 +5,9 @@
 #Question de recherche: comment les variations spatiales et temporelles influent-elles sur la structure des communautés? 
 
 #------------libraries à télécharger:----------------------------
-
-#pour fusionner les csv:
-library(data.table)
-#pour les fct renommer, uniformiser et retirer les colonnes (facilite la manipulation des données)
-library(dplyr)
-#Pour crééer les tables SQL
-library(RSQLite)
-#pour les figures
 library(ggplot2)
-#pour la carte
 library(leaflet)
-#pour target 
-library(targets)
-
+library(dplyr )
 #------------Script principal - Appel des fonctions--------------
 
 # Après avoir définir le dossier contenant les scripts, les fonctions peuvent être chargées:
@@ -173,7 +162,6 @@ ORDER BY
 
 
 extinction <- dbGetQuery(connect,babybel)
-print(extinction)
 
 source("fonctions_libidoptères/Figure_extinction.R")
 tracer_dernières_observations(extinction)
@@ -201,7 +189,7 @@ ORDER BY
   decennie ASC;"
 
 premiere_observation <- dbGetQuery(connect, cheddar)
-print(premiere_observation)
+
 source("fonctions_libidoptères/Figure_premieres_observations.R")
 tracer_premieres_observations(premiere_observation)
 
