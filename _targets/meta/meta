@@ -1,4 +1,4 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+data|stem|5af89c70f1df7c44|471f4c50e8eb2dc6|2c530c1562a7fbd1|33550471||t20198.7621634928s|s451b|451|rds|local|vector|||0.001||
+data_summary|stem|edc97fe7632d7bfd|2e4ea7419356bab6|4eb5b95106dd2f83|-651121042||t20198.7621635942s|s87b|87|rds|local|vector|||0||
 summarize_data|function|dc619228d9319364
-data|stem|4a6be21ca4d0d610|471f4c50e8eb2dc6|2c530c1562a7fbd1|33550471||t20198.5997779899s|s449b|449|rds|local|vector|||0||
-data_summary|stem|7f1497742ef5df6d|2e4ea7419356bab6|993bdcc9ce96530c|-651121042||t20198.5997783843s|s87b|87|rds|local|vector|||0||
